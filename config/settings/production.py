@@ -2,8 +2,6 @@ from .base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
-
 CORS_REPLACE_HTTPS_REFERER = True
 HOST_SCHEME = "https://"
 SECURE_FRAME_DENY = True
