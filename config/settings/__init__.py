@@ -9,4 +9,5 @@ elif ENVIRONMENT == "testing":
 elif ENVIRONMENT == "production":
     from .production import *
 else:
-    raise ValueError("Invalid DJANGO_ENV value")
+    msg = "Invalid DJANGO_ENV value"
+    raise ValueError(msg)

@@ -1,0 +1,84 @@
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py310"
+exclude = ["./*/migrations", "./manage.py"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+
+# Rules to ignore
+ignore = [
+    "D100", # Ignore missing docstring in public module
+    "D101", # Ignore missing docstring in public class
+    "D102", # Ignore missing docstring in public method
+    "D103", # Ignore missing docstring in public function
+    "E501", # Avoid enforcing line-length violations
+    "S311", # Avoid enforcing standard pseudo-random generators
+    "S101", # Use of `assert` detected
+    "RUF012", # Ignore mutable class attributes should be annotated with `typing.ClassVar`
+    "S113", # Probable use of `requests` call without timeout
+    "ANN", # Ignore type annotations
+    "PT", # Ignore pytest style
+    "ARG", # Ignore unused argument
+    "PLR", # Ignore 'Too many' warnings
+    "C90", # Ignore mccabe rules
+    "COM812",  # Conflicts with the formatter (trailing commas)
+    "ISC001",  # Conflicts with the formatter (string concatenation)
+]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+
+# Avoid trying to fix flake8-bugbear (`B`) violations.
+unfixable = ["B"]
+
+[tool.ruff.lint.extend-per-file-ignores]
+# Ignore missing docstring warning for __init__.py files
+"__init__.py" = ["D104"]
+# Ignore docstring requirements for migrations
+"*/migrations/*.py" = ["D100", "D101", "D102", "D103"]
+# Ignore errors in settings files
+"config/settings/*.py" = ["F403", "F405"]
+# Ignore errors in manage.py
+"manage.py" = ["TRY003", "EM101"]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings.
+docstring-code-format = true
+
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.mypy]
+disallow_subclassing_any = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = false
+allow_redefinition = true
+pretty = true
+follow_imports = "silent"
+ignore_missing_imports = true
+show_error_codes = true
+show_column_numbers = true
+python_version = "3.10"
