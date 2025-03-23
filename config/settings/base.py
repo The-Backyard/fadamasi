@@ -80,3 +80,7 @@ if config("DJANGO_ENV") == "testing":
     DATABASES = {"default": dj_database_url.config(default=config("DATABASE_TEST_URL"))}
 else:
     DATABASES = {"default": dj_database_url.config(default=config("DATABASE_URL"))}
+
+STATIC_URL = "/static/"
+
+STATIC_ROOT = BASE_DIR / "assets"
