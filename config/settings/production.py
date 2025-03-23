@@ -1,12 +1,8 @@
-from decouple import Csv
-
 from .base import *
 
 DEBUG = False
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
-
-DATABASES = {"default": dj_database_url.config(default=config("DATABASE_URL"))}
 
 CORS_REPLACE_HTTPS_REFERER = True
 HOST_SCHEME = "https://"

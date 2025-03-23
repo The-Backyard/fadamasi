@@ -1,6 +1,6 @@
 import dj_database_url
 from pathlib import Path
-from decouple import config
+from decouple import config, Csv  # noqa: F401
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -12,6 +12,11 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.staticfiles",
+    # Third-party
+    "rest_framework",
+    # Local apps
+    "apps.core",
 ]
 
 MIDDLEWARE = [
@@ -68,3 +73,8 @@ USE_I18N = True
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+if config("DJANGO_ENV") == "testing":
+    DATABASES = {"default": dj_database_url.config(default=config("DATABASE_TEST_URL"))}
+else:
+    DATABASES = {"default": dj_database_url.config(default=config("DATABASE_URL"))}
