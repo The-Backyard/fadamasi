@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party
     "rest_framework",
+    "drf_spectacular",
     # Local apps
     "apps.core",
 ]
@@ -90,3 +91,14 @@ else:
 STATIC_URL = "/static/"
 
 STATIC_ROOT = BASE_DIR / "assets"
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Fadamasi Ecommerce Backend API",
+    "DESCRIPTION": "A django rest api framework to power an ecommerce platform",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
