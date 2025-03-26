@@ -44,7 +44,7 @@ check: ## Run code quality checks
 
 test: ## Run tests
 	$(call check_venv)
-	@python manage.py test
+	@pytest --cov
 
 migrate: ## Run database migrations
 	$(call check_venv)
