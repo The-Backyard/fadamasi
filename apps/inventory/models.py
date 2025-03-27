@@ -6,6 +6,7 @@ class Category(MPTTModel):
     name = models.CharField(
         "name",
         max_length=50,
+        unique=True,
     )
     parent = TreeForeignKey(
         "self",
@@ -28,6 +29,7 @@ class Brand(models.Model):
     name = models.CharField(
         "name",
         max_length=50,
+        unique=True,
     )
 
     def __str__(self):
