@@ -27,4 +27,18 @@ class ProductSerializer(serializers.ModelSerializer):
         """Meta class to define the product model and fields to serialize."""
 
         model = Product
-        fields = "__all__"
+        fields = [
+            "product_id",
+            "name",
+            "short_description",
+            "long_description",
+            "price",
+            "stock",
+        ]
+
+    def validate_price(self, value):
+        """Ensure that the product price is not below 0."""
+        if value <= 0:
+            msg = "Price must be greater than 0."
+            raise serializers.ValidationError(msg)
+        return value
