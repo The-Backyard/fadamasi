@@ -1,0 +1,116 @@
+fadamasi/
+├── .github/                       # GitHub configurations
+│   ├── ISSUE_TEMPLATE/            # Custom GitHub issue templates
+│   └── workflows/                 # CI/CD workflow configurations
+│       ├── backend-ci.yml         # Lint + test backend, optional deploy
+│       ├── frontend-ci.yml        # Build + test frontend React app
+│       └── ui-deploy.yml          # Build and deploy UI prototype to Netlify
+│
+├── backend/                       # Django REST Framework backend
+│   ├── apps/                      # Project-level Django apps
+│   │   ├── appname/               # Sample app
+│   │   │   ├── __init__.py
+│   │   │   ├── models.py
+│   │   │   ├── admin.py
+│   │   │   ├── serializers.py
+│   │   │   ├── views.py
+│   │   │   ├── urls.py
+│   │   │   ├── managers.py
+│   │   │   ├── signals.py
+│   │   │   ├── filters.py
+│   │   │   ├── tests.py
+│   │   │   └── webhooks.py
+│   │   └── utils/                 # Reusable logic, helpers, mixins, etc.
+│   ├── config/                    # Django project core settings
+│   │   ├── __init__.py
+│   │   ├── settings/
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py            # Shared base config
+│   │   │   ├── development.py     # Dev-specific overrides
+│   │   │   ├── testing.py         # Test-specific overrides
+│   │   │   └── production.py      # Production settings with security config
+│   │   ├── urls.py                # Root project URLs
+│   │   └── wsgi.py                # WSGI app entry (used by Gunicorn)
+│   ├── media/                     # Uploaded content (excluded from Git)
+│   ├── static/                    # Static files for Django admin (gitignored)
+│   ├── scripts/                   # Backend automation/utility scripts
+│   │   └── data_migration.py      # Example data migration helper
+│   ├── Dockerfile                 # Builds backend image
+│   ├── requirements/
+│   │   ├── base.txt               # Shared deps (DRF, celery, etc.)
+│   │   ├── dev.txt                # Dev-only deps (debug toolbar, pytest)
+│   │   └── prod.txt               # Prod-only deps (gunicorn, whitenoise)
+│   ├── .env.example               # Backend env config sample
+│   └── manage.py                  # Django CLI
+│
+├── frontend/                      # React app powered by Vite
+│   ├── public/                    # Vite static files, favicon, etc.
+│   ├── src/
+│   │   ├── assets/                # Fonts, images, svgs
+│   │   ├── components/            # UI component library
+│   │   │   ├── common/            # Buttons, inputs, spinners, etc.
+│   │   │   ├── layouts/           # Layouts like MainLayout, AuthLayout
+│   │   │   └── sections/          # Reusable page sections (e.g. Hero, Footer)
+│   │   ├── constants/             # Global config/constants
+│   │   ├── contexts/              # React context providers
+│   │   ├── hooks/                 # Custom reusable hooks
+│   │   ├── pages/                 # Pages mapped to routes
+│   │   ├── services/              # API calls to backend (via Axios)
+│   │   ├── store/                 # State manager (e.g. Zustand, Redux)
+│   │   ├── styles/                # Global Tailwind or SCSS
+│   │   ├── utils/                 # Utility functions
+│   │   ├── App.js                 # Root app component
+│   │   └── main.js                # Entry point for Vite
+│   ├── Dockerfile                 # Builds frontend image
+│   ├── .env.example               # Frontend config template (API_URL, etc.)
+│   ├── package.json               # NPM deps and scripts
+│   └── README.md                  # Frontend dev notes
+│
+├── ui/                            # Gulp + Nunjucks prototype UI
+│   ├── src/
+│   │   ├── assets/                # Fonts, icons, logos
+│   │   ├── js/                    # Prototype-only JS (e.g. navbar toggle)
+│   │   ├── scss/                  # SCSS files with variables, mixins
+│   │   ├── templates/             # Nunjucks HTML templates
+│   │   │   ├── layouts/           # Base layout files (base.njk)
+│   │   │   ├── pages/             # Actual pages (index.njk, cart.njk)
+│   │   │   └── partials/          # Header, footer, nav, etc.
+│   │   └── data/                  # Optional: JSON/JS data for pages
+│   ├── dist/                      # Compiled output (gitignored)
+│   ├── gulpfile.js                # Gulp task config
+│   ├── package.json               # Dev dependencies (gulp, nunjucks)
+│   ├── README.md                  # How to run the UI locally
+│   └── netlify.toml               # Deploy instructions for Netlify
+│
+├── docker/                        # Shared Docker assets
+│   ├── nginx/                     # Nginx shared conf (used in prod)
+│   ├── local/                     # Docker helpers for local dev
+│   └── production/                # Docker configs for production
+│       ├── nginx.conf             # Reverse proxy config
+│       └── docker.env             # Optional: build-time env vars
+│
+├── docs/                          # Technical documentation
+│   ├── api/
+│   │   ├── api-endpoints.md       # Documented REST endpoints
+│   │   └── swagger/               # Swagger UI config / generated docs
+│   ├── frontend/                  # Design choices, component map, notes
+│   ├── deployment/                # Setup steps and infra notes
+│   │   ├── prod.md                # Production deployment steps
+│   │   ├── staging.md             # Staging setup steps
+│   │   └── ci-cd.md               # How CI/CD is wired
+│   ├── architecture.md            # System architecture diagram
+│   └── er-diagram.drawio          # Entity Relationship diagram
+│
+├── scripts/                       # Project-wide CLI helpers
+│   ├── setup-dev.sh               # Bootstrap dev environment
+│   ├── deploy.sh                  # Manual deploy helper
+│   └── backup-db.sh               # Postgres DB backup script
+│
+├── docker-compose.yml             # Base services: db, redis, backend
+├── docker-compose.override.yml    # Dev-time overrides (volumes, ports)
+├── docker-compose.prod.yml        # Production Docker Compose
+│
+├── .gitignore                     # Global ignore (Python, Node, build dirs)
+├── LICENSE                        # MIT or other OSS license
+├── README.md                      # Main overview + usage instructions
+└── package.json                   # Root-level package.json for scripts & tooling

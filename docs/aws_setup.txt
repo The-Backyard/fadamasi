@@ -1,0 +1,134 @@
+Django-on-Amazon-EC2: a walkthrough on how to deploy the project to Amazon EC2 instance
+
+SERVER SETUP
+- Launch an EC2 instance
+- Choose Ubuntu
+- Select t3.micro instance type
+- Configure security groups
+- Create a Key Pair and Save the .pem file securely
+- Move the key to WSL: mv /mnt/c/Users/seyi/Downloads/fadamasi.pem ~/.ssh/
+- chmod 600 ~/.ssh/fadamasi.pem
+- Connect via SSH: ssh -i ~/.ssh/fadamasi.pem ubuntu@ec2-18-222-179-148.us-east-2.compute.amazonaws.com
+  Simplify SSH Access
+  - nano ~/.ssh/config
+  ```
+  Host fadamasi
+      HostName ec2-18-222-179-148.us-east-2.compute.amazonaws.com
+      User ubuntu
+      IdentityFile ~/.ssh/fadamasi.pem
+  ```
+  - Now, you can just type: ssh fadamasi
+- sudo apt update && sudo apt upgrade -y
+- sudo apt install -y python3-pip python3-venv python3-dev libpq-dev postgresql postgresql-contrib nginx curl redis
+----------
+Create A Dedicated User (Optional)
+```
+sudo adduser deploy
+sudo usermod -aG sudo deploy
+su - deploy
+```
+----------
+ELASTIC IP
+- Go to AWS Console → EC2 → Elastic IPs
+- Click Allocate Elastic IP Address
+- Click Allocate for the generated IP address
+- Associate the Elastic IP with Your EC2 Instance and click Associate
+- Use this IP address in the ALLOWED_HOSTS and Nginx conf file.
+IMPORT PROJECT
+---------
+Setup SSH Key for Git Pull
+- ssh-keygen -t rsa -b 4096 -C "prontomaster@gmail.com"
+- cat ~/.ssh/id_rsa.pub
+- Add the key to GitHub repo under Deploy Keys
+- git clone git@github.com/The-Backyard/fadamasi_backend.git
+Setup Personal Access Token (Alternative)
+- Go to GitHub → Settings → Developer Settings → Personal Access Tokens.
+- Click "Generate new token (classic)".
+- Set the Expiration
+- Select repo permissions
+- Click "Generate Token" and copy the token
+- git clone https://Pythonian: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@github.com/The-Backyard/fadamasi_backend.git
+---------
+- cd fadamasi_backend
+- python3 -m venv venv
+- source venv/bin/activate
+- pip install --upgrade pip
+- pip install -r requirements.txt
+-- Switch to PostgreSQL shell
+sudo -u postgres psql
+-- Create the user first
+CREATE USER fadamasiuser WITH PASSWORD 'fadamasipassword';
+-- Set recommended settings for the user
+ALTER ROLE fadamasiuser SET client_encoding TO 'utf8';
+ALTER ROLE fadamasiuser SET default_transaction_isolation TO 'read committed';
+ALTER ROLE fadamasiuser SET timezone TO 'UTC';
+-- Create the database and set the owner
+CREATE DATABASE fadamasidb OWNER fadamasiuser;
+-- Grant all privileges explicitly (optional but good practice)
+GRANT ALL PRIVILEGES ON DATABASE fadamasidb TO fadamasiuser;
+-- Exit PostgreSQL shell
+\q
+- cp .env.example .env
+- Update settings configuration in .env file
+CONFIGURE GUNICORN
+- sudo nano /etc/systemd/system/gunicorn.service
+- sudo mkdir -p /var/log/gunicorn
+- sudo chown ubuntu:www-data /var/log/gunicorn
+- sudo chmod 775 /var/log/gunicorn
+- sudo systemctl daemon-reload
+- sudo systemctl start gunicorn
+- sudo systemctl enable gunicorn
+- sudo systemctl status gunicorn
+- tail -f /var/log/gunicorn/error.log
+- tail -f /var/log/gunicorn/access.log
+CONFIGURE NGINX
+- sudo nano /etc/nginx/sites-available/fadamasi_backend
+- sudo ln -s /etc/nginx/sites-available/fadamasi_backend /etc/nginx/sites-enabled
+- sudo nginx -t
+- sudo systemctl restart nginx
+- sudo systemctl status nginx
+- sudo tail -f /var/log/nginx/error.log
+- sudo tail -f /var/log/nginx/access.log
+SECURE FIREWALL
+- sudo ufw allow OpenSSH
+- sudo ufw allow 'Nginx Full'
+- sudo ufw enable
+- sudo ufw status
+- sudo systemctl restart gunicorn
+- sudo systemctl restart nginx
+STATICFILE PERMISSION
+- python manage.py collectstatic
+- sudo chown -R www-data:www-data /home/ubuntu/fadamasi_backend/assets/
+- sudo chmod -R 755 /home/ubuntu/fadamasi_backend/assets/
+- sudo chmod +x /home/ubuntu
+- sudo chmod +x /home/ubuntu/fadamasi_backend
+FINISH UP
+- Create a superuser
+
+------
+
+# Amazon EC2 Instance Setup
+
+- Login to Amazon and go to EC2
+- Create security group
+  - Give it a name and description
+  - Setup the Inbound rules:
+    - Type: SSH; CIDR blocks IPV4 address: 0.0.0.0/0
+    - Type: HTTP; Allow all inbound traffic from 0.0.0.0/0 IPV4 address in CIDR block
+    - Type: HTTP; Allow all inbound traffic from IPV6 address designated as ::/0 in the CIDR block
+  - Click the Create Security Group button
+- Now, click on Instances, and click on Launch Instances to create a new one
+  - Enter a Name for the server instance
+  - Select an OS image. Use Ubuntu
+  - Ensure Instance type is t2.micro
+  - In Key pair, proceed without key pair
+  - In the Network settings, click on Select existing security group, and choose the one previously created.
+  - After confirming setup, click Launch Instance
+- Go back to Instances, and click on the checkbox of the Instance that has been created, and click Connect.
+- Under the EC2 instance connect tab, Click the Connect button
+- Create a new directory: mkdir /var/www/django
+- SSH key based github authentication
+  - ssh-keygen -t ed25519 -C "<prontomaster@gmail.com>"
+  - cat ~/.ssh/id_ed25519.pub
+  - Add the public key to Github settings > Deploy keys > Add deploy key
+  - Test the connection on amazon: ssh -T <git@github.com>

@@ -1,0 +1,31 @@
+[Unit]
+Description=Gunicorn instance to serve Django app
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/fadamasi_backend
+
+# Auto-create /run/gunicorn on boot
+RuntimeDirectory=gunicorn
+RuntimeDirectoryMode=0755
+
+# Environment variables
+EnvironmentFile=/home/ubuntu/fadamasi_backend/.env
+
+# Gunicorn startup command
+ExecStart=/home/ubuntu/fadamasi_backend/venv/bin/gunicorn \
+            --access-logfile /var/log/gunicorn/access.log \
+            --error-logfile /var/log/gunicorn/error.log \
+            --workers 3 \
+            --bind unix:/run/gunicorn/fadamasi_backend.sock \
+            config.wsgi:application
+
+# Restart policies
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

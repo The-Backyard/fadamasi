@@ -14,6 +14,7 @@ class Category(MPTTModel):
         max_length=50,
         unique=True,
     )
+    description = models.TextField(blank=True, default="")
     parent = TreeForeignKey(
         "self",
         on_delete=models.PROTECT,
