@@ -1,0 +1,105 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'Account Settings'}
+]) }}
+
+<div class="container py-3">
+    <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            {{ macros.sidebarNav('settings') }}
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white p-3">
+                    <h5 class="mb-0 fw-bold">Personal Information</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" value="Seyi">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" value="Pythonian">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" value="prontomaster@gmail.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" value="+234 812 345 6789">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-dark">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white p-3">
+                    <h5 class="mb-0 fw-bold">Connected Accounts</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <i class="bi bi-google fs-4"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Google</h6>
+                                <p class="text-muted small mb-0">Connect your Google account for faster login</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-dark btn-sm">Connect</button>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <i class="bi bi-facebook fs-4"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Facebook</h6>
+                                <p class="text-muted small mb-0">Your Facebook account has been connected</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-danger btn-sm">Disconnect</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4 bg-light">
+                <div class="card-body p-4">
+                    <h6 class="text-danger fw-bold mb-3">Danger Zone</h6>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="mb-1 fw-medium">Delete Account</p>
+                            <p class="text-muted small mb-0">Once you delete your account, there is no going back.
+                                Please be certain.</p>
+                        </div>
+                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#deleteAccountModal">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "modals/logout_confirmation.njk" %}
+{% include "modals/account_delete_confirm.njk" %}
+
+{% endblock %}

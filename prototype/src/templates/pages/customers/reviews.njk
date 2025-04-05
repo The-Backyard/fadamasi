@@ -1,0 +1,201 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}My Ratings and Reviews{% endblock %}
+
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'My Ratings and Reviews'}
+]) }}
+
+<div class="container py-3">
+    <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            {{ macros.sidebarNav('reviews') }}
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <!-- Page Header -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white p-3">
+                    <h5 class="mb-0 fw-bold">My Ratings and Reviews</h5>
+                </div>
+            </div>
+
+            <!-- Reviews List -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-0">
+                    <!-- Review Item 1 -->
+                    <div class="p-3 border-bottom">
+                        <div class="d-flex mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-light rounded-2" style="width: 80px; height: 80px;">
+                                    <div class="d-flex align-items-center justify-content-center h-100">
+                                        <i class="bi bi-image text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">Samsung Galaxy S25</h6>
+                                <p class="text-muted small mb-0">Order #FDM-7829 • Mar 28, 2025</p>
+                            </div>
+                            <div class="flex-shrink-0 text-end">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-link text-dark" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Edit Review</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete Review</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="text-warning me-2">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                                <span class="text-muted small">Posted on Mar 30, 2025</span>
+                            </div>
+                            <h6 class="mb-2">Great phone with excellent battery life!</h6>
+                            <p class="mb-0">Great phone with excellent battery life and camera quality. The
+                                processing speed is impressive.</p>
+                        </div>
+                        <div class="d-flex align-items-center small text-muted">
+                            <div class="d-flex align-items-center me-3">
+                                <i class="bi bi-hand-thumbs-up me-1" title="Helpful"></i>
+                                <span>15 people found this helpful</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Item 2 -->
+                    <div class="p-3">
+                        <div class="d-flex mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-light rounded-2" style="width: 80px; height: 80px;">
+                                    <div class="d-flex align-items-center justify-content-center h-100">
+                                        <i class="bi bi-image text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">Sony WH-1000XM5 Headphones</h6>
+                                <p class="text-muted small mb-0">Order #FDM-7830 • Mar 22, 2025</p>
+                            </div>
+                            <div class="flex-shrink-0 text-end">
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-link text-dark" type="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Edit Review</a></li>
+                                        <li><a class="dropdown-item" href="#">Delete Review</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="text-warning me-2">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                                <span class="text-muted small">Posted on Mar 25, 2025</span>
+                            </div>
+                            <h6 class="mb-2">Superb noise cancellation and audio quality</h6>
+                            <p class="mb-0">Superb noise cancellation and audio quality. Worth every penny! The
+                                comfort level is exceptional even for long listening sessions.</p>
+                        </div>
+                        <div class="d-flex align-items-center small text-muted">
+                            <div class="d-flex align-items-center me-3">
+                                <i class="bi bi-hand-thumbs-up me-1" title="Helpful"></i>
+                                <span>8 people found this helpful</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State (Hidden by default) -->
+            <div class="card border-0 shadow-sm d-none">
+                <div class="card-body p-5 text-center">
+                    <div class="py-4">
+                        <div class="mb-3">
+                            <i class="bi bi-star text-muted fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">No Reviews Yet</h5>
+                        <p class="text-muted mb-3">You haven't reviewed any products yet. Share your opinions to
+                            help other shoppers!</p>
+                        <a href="orders.html" class="btn btn-dark rounded-0">Review Your Purchases</a>
+                    </div>
+                </div>
+            </div>
+
+            {% include "partials/pagination.njk" %}
+
+            <!-- Products to Review Section -->
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-header bg-white p-3">
+                    <h5 class="mb-0 fw-bold">Products You Can Review</h5>
+                </div>
+                <div class="card-body p-0">
+                    <!-- Product 1 -->
+                    <div class="p-3 border-bottom">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="bg-light rounded-2" style="width: 80px; height: 80px;">
+                                    <div class="d-flex align-items-center justify-content-center h-100">
+                                        <i class="bi bi-image text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">Apple AirPods Pro</h6>
+                                <p class="text-muted small mb-2">Order #FDM-7831 • Mar 15, 2025</p>
+                                <p class="text-muted small mb-2">Delivered on Mar 18, 2025</p>
+                                <a href="write-review.html" class="btn btn-sm btn-dark rounded-0">Write a Review</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="p-3">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <div class="bg-light rounded-2" style="width: 80px; height: 80px;">
+                                    <div class="d-flex align-items-center justify-content-center h-100">
+                                        <i class="bi bi-image text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">Amazon Kindle Paperwhite</h6>
+                                <p class="text-muted small mb-2">Order #FDM-7831 • Mar 15, 2025</p>
+                                <p class="text-muted small mb-2">Delivered on Mar 18, 2025</p>
+                                <a href="write-review.html" class="btn btn-sm btn-dark rounded-0">Write a Review</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include "modals/logout_confirmation.njk" %}
+
+{% endblock %}

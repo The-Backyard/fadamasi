@@ -1,0 +1,176 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}My Wishlist{% endblock %}
+
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'My Wishlist'}
+]) }}
+
+<div class="container py-3">
+    <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            {{ macros.sidebarNav('wishlist') }}
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <!-- Page Header -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white p-3">
+                    <h5 class="mb-0 fw-bold">My Wishlist</h5>
+                </div>
+            </div>
+
+            <!-- Wishlist Items - Active State -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <!-- Wishlist Item 1 -->
+                    <div class="d-flex align-items-center p-3 border-bottom">
+                        <div class="flex-shrink-0">
+                            <div class="bg-light rounded">
+                                <img src="https://placehold.co/80" alt="Ankara Dress" class="product-image">
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h6 class="mb-1">Adire Maxi Dress</h6>
+                                    <p class="text-muted mb-1 small">Traditional - Blue/Gold</p>
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-half text-warning me-1"></i>
+                                        <span class="text-muted small ms-1">(124 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 py-2">
+                                    <span class="fw-bold fs-5">₦25,000</span>
+                                </div>
+                                <div class="col-md-3 text-md-end py-2 action-buttons">
+                                    <div class="btn-group">
+                                        <a href="products.html" class="btn btn-dark rounded-0">
+                                            <i class="bi bi-cart-plus me-md-1"></i><span
+                                                class="d-none d-md-inline">Add to Cart</span>
+                                        </a>
+                                        <button type="button" class="btn btn-outline-danger rounded-0"
+                                            data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
+                                            data-product-name="Adire Maxi Dress">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Item 2 -->
+                    <div class="d-flex align-items-center p-3 border-bottom">
+                        <div class="flex-shrink-0">
+                            <div class="bg-light rounded" style="width: 80px; height: 80px;">
+                                <img src="https://placehold.co/80" alt="Agbada Set" class="product-image">
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h6 class="mb-1">Premium Agbada Set</h6>
+                                    <p class="text-muted mb-1 small">Complete Set - White/Gold</p>
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <span class="text-muted small ms-1">(241 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 py-2">
+                                    <span class="fw-bold fs-5">₦48,000</span>
+                                </div>
+                                <div class="col-md-3 text-md-end py-2 action-buttons">
+                                    <div class="btn-group">
+                                        <button class="btn btn-secondary rounded-0" disabled>
+                                            <i class="bi bi-x-circle me-md-1"></i><span
+                                                class="d-none d-md-inline">Out of Stock</span>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger rounded-0"
+                                            data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
+                                            data-product-name="Premium Agbada Set">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Item 3 -->
+                    <div class="d-flex align-items-center p-3">
+                        <div class="flex-shrink-0">
+                            <div class="bg-light rounded" style="width: 80px; height: 80px;">
+                                <img src="https://placehold.co/80" alt="Ankara Jumpsuit" class="product-image">
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h6 class="mb-1">Ankara Palazzo Jumpsuit</h6>
+                                    <p class="text-muted mb-1 small">Modern - Green/Orange</p>
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star-fill text-warning me-1"></i>
+                                        <i class="bi bi-star text-warning me-1"></i>
+                                        <span class="text-muted small ms-1">(76 reviews)</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 py-2">
+                                    <span class="fw-bold fs-5">₦19,500</span>
+                                </div>
+                                <div class="col-md-3 text-md-end py-2 action-buttons">
+                                    <div class="btn-group">
+                                        <a href="products.html" class="btn btn-dark rounded-0">
+                                            <i class="bi bi-cart-plus me-md-1"></i><span
+                                                class="d-none d-md-inline">Add to Cart</span>
+                                        </a>
+                                        <button type="button" class="btn btn-outline-danger rounded-0"
+                                            data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
+                                            data-product-name="Ankara Palazzo Jumpsuit">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty Wishlist State - Hidden by default -->
+            <div class="card border-0 shadow-sm d-none">
+                <div class="card-body p-5 text-center">
+                    <div class="py-5">
+                        <div class="mb-4">
+                            <i class="bi bi-heart text-muted fs-1"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Your Wishlist is Empty</h4>
+                        <p class="text-muted mb-4">Save items you like for future purchase by adding them to your
+                            wishlist.</p>
+                        <a href="products.html" class="btn btn-dark px-4 py-2 rounded-0">Explore Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "modals/logout_confirmation.njk" %}
+
+{% endblock %}

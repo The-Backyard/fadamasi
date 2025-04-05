@@ -1,0 +1,238 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}Home{% endblock %}
+
+{% block topnav_banner %}
+    {% include "partials/topnav_banner.njk" %}
+{% endblock %}
+
+{% block content %}
+
+<section style="background-color: #1a1a1a;">
+    <div class="container pt-5 pt-lg-0">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-white">
+                <h1 class="display-2 text-uppercase fw-bold mb-4">Find
+                    <span class="text-warning">Clothes</span>
+                    That
+                    <span class="text-warning">Matches</span>
+                    Your
+                    <span class="text-warning">Style</span>
+                    <span class="text-warning-emphasis fst-italic fw-bolder">!</span>
+                </h1>
+                <p class="lead mb-4">Browse through our diverse range of meticulously crafted garments, designed to bring out your
+                    individuality and cater to your sense of style.</p>
+                <div class="d-flex flex-wrap gap-2 mb-5">
+                    <a href="products.html" class="btn btn-light px-4 py-2 rounded-5">Shop Now</a>
+                </div>
+                <div class="row g-4">
+                    <div class="col-sm-4">
+                        <div class="border-start border-warning ps-3">
+                            <div class="h2 text-white mb-1">200+</div>
+                            <p class="text-white-50 mb-0">International Brands</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="border-start border-warning ps-3">
+                            <div class="h2 text-white mb-1">2,000+</div>
+                            <p class="text-white-50 mb-0">Quality Products</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="border-start border-warning ps-3">
+                            <div class="h2 text-white mb-1">30,000+</div>
+                            <p class="text-white-50 mb-0">Happy Customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0 text-end">
+                <div class="position-relative" style="z-index: 1;">
+                    <img src="images/hero.png" alt="Fashion Model" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Arrivals Section -->
+<section class="py-5">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-6 fw-bold text-uppercase">New Arrivals</h2>
+                <p class="text-muted">Check out our latest fashion collections</p>
+            </div>
+        </div>
+        <!-- Product Cards Row -->
+        <div class="row g-4">
+            <!-- Product Card 1 -->
+            <div class="col-md-6 col-lg-3">
+                {{ macros.productCard(
+                "images/native_1.png", 
+                "Women", 
+                "Elegant Summer Dress", 
+                4.5, 
+                24, 
+                "15,800", 
+                null, 
+                {color: "warning", textColor: "text-dark", text: "New Arrival"}
+            ) }}
+            </div>
+            <!-- Product Card 2 -->
+            <div class="col-md-6 col-lg-3">
+                {{ macros.productCard(
+                "images/native_3.png", 
+                "Men", 
+                "Classic Fit Blazer", 
+                4, 
+                16, 
+                "29,000", 
+                "33,000", 
+                {color: "danger", textColor: "text-white", text: "-20%"}
+            ) }}
+            </div>
+            <!-- Product Card 3 -->
+            <div class="col-md-6 col-lg-3">
+                {{ macros.productCard(
+                "images/native_4.png", 
+                "Accessories", 
+                "Leather Crossbody Bag", 
+                5, 
+                42, 
+                "12,000", 
+                null, 
+                null
+            ) }}
+            </div>
+            <!-- Product Card 4 -->
+            <div class="col-md-6 col-lg-3">
+                {{ macros.productCard(
+                "images/native_2.png", 
+                "Footwear", 
+                "Premium Sneakers", 
+                4.5, 
+                38, 
+                "44,000", 
+                null, 
+                {color: "success", textColor: "text-white", text: "Free Shipping"}
+            ) }}
+            </div>
+        </div>
+        <!-- View All Products Button -->
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-dark px-4 py-2 rounded-5">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- Shop by Category Section -->
+<section class="py-5">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-6 fw-bold text-uppercase">Choose Your Fashion</h2>
+                <p class="text-muted">Find the perfect style for every occasion</p>
+            </div>
+        </div>
+
+        <!-- Category Cards -->
+        <div class="row g-4">
+            <!-- Category Card 1 -->
+            <div class="col-md-4">
+                {{ macros.categoryCard("images/native_1.png", "For Women", 100) }}
+            </div>
+
+            <!-- Category Card 2 -->
+            <div class="col-md-4">
+                {{ macros.categoryCard("images/native_4.png", "For Men", 50) }}
+            </div>
+
+            <!-- Category Card 3 -->
+            <div class="col-md-4">
+                {{ macros.categoryCard("images/native_2.png", "For Kids", 10) }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Top Category Section -->
+<section class="py-5">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-6 fw-bold text-uppercase">Top Categories</h2>
+                <p class="text-muted">Discover our most popular fashion categories</p>
+            </div>
+        </div>
+
+        <!-- Category Cards Grid -->
+        <div class="row row-cols-2 row-cols-md-4 g-3">
+            <div class="col">
+                {{ macros.topCategoryCard("images/native_1.png", "Blazers") }}
+            </div>
+            <div class="col">
+                {{ macros.topCategoryCard("images/native_2.png", "Joggers") }}
+            </div>
+            <div class="col">
+                {{ macros.topCategoryCard("images/native_3.png", "Sneakers") }}
+            </div>
+            <div class="col">
+                {{ macros.topCategoryCard("images/native_4.png", "Dresses") }}
+            </div>
+            <div class="col">
+                {{ macros.topCategoryCard("images/native_3.png", "Jackets") }}
+            </div>
+            <div class="col">
+                {{ macros.topCategoryCard("images/native_4.png", "Sunglasses") }}
+            </div>
+            <div class="col">
+                {{ macros.topCategoryCard("images/native_1.png", "Hats") }}
+            </div>
+            <div class="col">
+                {{ macros.topCategoryCard("images/native_2.png", "Jeans") }}
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-outline-dark px-4 py-2 rounded-pill">View All Categories</a>
+        </div>
+    </div>
+</section>
+
+<!-- Limited Stock Section -->
+<div class="bg-dark text-white py-2">
+    <div class="container">
+        <div class="text-center">
+            <p class="mb-0 text-uppercase">Limited Stock Deals</p>
+        </div>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <!-- Product Cards -->
+        <div class="position-relative">
+            <div class="row flex-nowrap overflow-auto pb-3 px-2">
+                <div class="col-10 col-sm-6 col-md-4 col-lg-3 px-2">
+                    {{ macros.productNoBorderCard("images/native_1.png", "25,000", "Aso Oke", "Elegant Summar Dress", 4.5) }}
+                </div>
+                <div class="col-10 col-sm-6 col-md-4 col-lg-3 px-2">
+                    {{ macros.productNoBorderCard("images/native_2.png", "15,999", "Accessories", "Classic Fit Blazer", 2.5) }}
+                </div>
+                <div class="col-10 col-sm-6 col-md-4 col-lg-3 px-2">
+                    {{ macros.productNoBorderCard("images/native_3.png", "10,500", "Senator", "2025 Premium Senator Apparel", 3.5) }}
+                </div>
+                <div class="col-10 col-sm-6 col-md-4 col-lg-3 px-2">
+                    {{ macros.productNoBorderCard("images/native_4.png", "8,000", "Kids", "4
+                                    inch Turtle Neck", 4.0) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

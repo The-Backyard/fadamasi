@@ -1,0 +1,229 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}My Dashboard{% endblock %}
+
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'My Dashboard'}
+]) }}
+
+<div class="container py-3">
+    <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            {{ macros.sidebarNav('dashboard') }}
+        </div>
+
+        <!-- Main Dashboard -->
+        <div class="col-lg-9">
+            <!-- Quick Links -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white p-3">
+                    <h5 class="mb-0 fw-bold">Quick Actions</h5>
+                </div>
+                <div class="card-body py-3">
+                    <div class="row g-2">
+                        <div class="col-md-3 col-6">
+                            <a href="track.html"
+                                class="btn btn-light d-flex flex-column align-items-center p-3 w-100 h-100">
+                                <i class="bi bi-truck fs-4 mb-2"></i>
+                                <span>Track Order</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="returns.html"
+                                class="btn btn-light d-flex flex-column align-items-center p-3 w-100 h-100">
+                                <i class="bi bi-arrow-return-left fs-4 mb-2"></i>
+                                <span>Return Item</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="contact.html"
+                                class="btn btn-light d-flex flex-column align-items-center p-3 w-100 h-100">
+                                <i class="bi bi-headset fs-4 mb-2"></i>
+                                <span>Support</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="products.html"
+                                class="btn btn-light d-flex flex-column align-items-center p-3 w-100 h-100">
+                                <i class="bi bi-shop fs-4 mb-2"></i>
+                                <span>Shop Now</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center p-3">
+                    <h5 class="mb-0 fw-bold">Recent Orders</h5>
+                    <a href="orders.html" class="btn btn-sm btn-outline-dark">View All</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="px-3 py-3">Order ID</th>
+                                    <th class="px-3 py-3">Date</th>
+                                    <th class="px-3 py-3">Items</th>
+                                    <th class="px-3 py-3">Total</th>
+                                    <th class="px-3 py-3">Status</th>
+                                    <th class="px-3 py-3">Expected Delivery</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ macros.orderRow(
+                                    "#FDM-7829", "Mar 28, 2025", 3, "45,000", "Delivered", "success", "Delivered Mar 30"
+                                ) }}
+                                
+                                {{ macros.orderRow(
+                                    "#FDM-7830", "Mar 22, 2025", 1, "18,500", "Shipped", "info", "Apr 3, 2025"
+                                ) }}
+                                
+                                {{ macros.orderRow(
+                                    "#FDM-7831", "Mar 15, 2025", 2, "34,750", "Processing", "warning", "Apr 6, 2025"
+                                ) }}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-body p-4 text-center d-none">
+                    <div class="py-4">
+                        <div class="mb-3">
+                            <i class="bi bi-box-seam text-muted fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">No Orders Yet</h5>
+                        <p class="text-muted mb-3">You haven't placed any orders with us yet.</p>
+                        <a href="products.html" class="btn btn-dark rounded-0">Start Shopping</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishlist and Reviews -->
+            <div class="row g-4 mb-4">
+                <!-- Recent Wishlist Items -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center p-3">
+                            <h5 class="mb-0 fw-bold">Wishlist Items</h5>
+                            <a href="wishlist.html" class="btn btn-sm btn-outline-dark">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <!-- Wishlist Item 1 -->
+                            <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                                <div class="flex-shrink-0">
+                                    <div class="bg-light" style="width: 60px; height: 60px;">
+                                        <div class="d-flex align-items-center justify-content-center h-100">
+                                            <i class="bi bi-camera text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">Nike Air Max 270</h6>
+                                    <p class="text-muted mb-1 small">Running Shoes - Black/White</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold">₦75,000</span>
+                                        <a href="shop-item.html" class="btn btn-sm btn-dark">Buy Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Wishlist Item 2 -->
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="bg-light" style="width: 60px; height: 60px;">
+                                        <div class="d-flex align-items-center justify-content-center h-100">
+                                            <i class="bi bi-camera text-muted"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="mb-1">Apple AirPods Pro</h6>
+                                    <p class="text-muted mb-1 small">Wireless Earbuds - White</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold">₦120,000</span>
+                                        <a href="shop-item.html" class="btn btn-sm btn-dark">Buy Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4 text-center d-none">
+                            <div class="py-3">
+                                <div class="mb-3">
+                                    <i class="bi bi-heart text-muted fs-1"></i>
+                                </div>
+                                <h5 class="fw-bold mb-2">Your Wishlist is Empty</h5>
+                                <p class="text-muted mb-3">Save items you like for later by adding them to your
+                                    wishlist.</p>
+                                <a href="products.html" class="btn btn-dark rounded-0">Explore Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Reviews -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center p-3">
+                            <h5 class="mb-0 fw-bold">Your Recent Reviews</h5>
+                            <a href="reviews.html" class="btn btn-sm btn-outline-dark">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <!-- Review 1 -->
+                            <div class="mb-3 pb-3 border-bottom">
+                                <div class="d-flex align-items-center mb-2">
+                                    <h6 class="mb-0 me-auto">Samsung Galaxy S25</h6>
+                                    <div>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <p class="text-muted small mb-0">Great phone with excellent battery life and camera
+                                    quality. The processing speed is impressive.</p>
+                                <small class="text-muted">Posted on Mar 15, 2025</small>
+                            </div>
+                            <!-- Review 2 -->
+                            <div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <h6 class="mb-0 me-auto">Sony WH-1000XM5 Headphones</h6>
+                                    <div>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    </div>
+                                </div>
+                                <p class="text-muted small mb-0">Superb noise cancellation and audio quality. Worth
+                                    every penny!</p>
+                                <small class="text-muted">Posted on Feb 28, 2025</small>
+                            </div>
+                        </div>
+                        <div class="card-body p-4 text-center d-none">
+                            <div class="py-3">
+                                <div class="mb-3">
+                                    <i class="bi bi-star text-muted fs-1"></i>
+                                </div>
+                                <h5 class="fw-bold mb-2">No Reviews Yet</h5>
+                                <p class="text-muted mb-3">You haven't reviewed any products yet. Share your
+                                    opinions to help other shoppers!</p>
+                                <a href="orders.html" class="btn btn-dark rounded-0">Review Your Purchases</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "modals/logout_confirmation.njk" %}
+
+{% endblock %}

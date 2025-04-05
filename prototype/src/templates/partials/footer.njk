@@ -1,0 +1,110 @@
+{% import "macros/_macros.njk" as macros %}
+<!-- Footer -->
+<footer class="bg-white text-dark pt-5 mt-5">
+    <!-- Top Footer Area -->
+    <div class="container mb-3">
+        <div class="row mb-4">
+            <!-- Logo and Company Info -->
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="d-flex align-items-center mb-3">
+                    <h2 class="fw-bold mb-0">FADAMASI</h2>
+                    <span class="ms-2 border-start border-warning ps-2">STORE</span>
+                </div>
+                <p class="text-light-emphasis mb-3">Nigeria's premier fashion destination offering authentic African designs and
+                    contemporary styles for the modern individual. Quality craftsmanship meets cultural elegance.</p>
+                <div class="d-flex gap-2">
+                    {{ macros.socialButton("facebook", "sm", "https://social.co/fadamasi") }}
+                    {{ macros.socialButton("instagram", "sm", "https://social.co/fadamasi") }}
+                    {{ macros.socialButton("twitter", "sm", "https://social.co/fadamasi") }}
+                    {{ macros.socialButton("pinterest", "sm", "https://social.co/fadamasi") }}
+                    {{ macros.socialButton("whatsapp", "sm", "https://social.co/fadamasi") }}
+                </div>
+            </div>
+            <!-- Customer Service Links -->
+            <div class="col-lg-2 col-sm-6 col-12 mb-4 mb-md-0">
+                <h5 class="text-dark mb-3 fw-bolder text-uppercase">Customer Service</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a
+                            href="/contact.html"
+                            class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">Contact
+                            Us</a>
+                    </li>
+                    <li class="mb-2">
+                        <a
+                            href="/track.html"
+                            class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">Track
+                            Order</a>
+                    </li>
+                    <li class="mb-2">
+                        <a
+                            href="/faq.html"
+                            class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">FAQ</a>
+                    </li>
+                    <li>
+                        <a
+                            href="/size_guide.html"
+                            class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">Size
+                            Guide</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Information Links -->
+            <div class="col-lg-2 col-sm-6 col-12 mb-4 mb-md-0">
+                <h5 class="text-dark mb-3 fw-bolder text-uppercase">Information</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a
+                            href="/about.html"
+                            class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">About
+                            Us</a>
+                    </li>
+                    <li class="mb-2">
+                        <a
+                            href="/customers/account.html"
+                            class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">My
+                            Account</a>
+                    </li>
+                    <li class="mb-2">
+                        <a
+                            href="/terms.html"
+                            class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">Terms
+                            of Service</a>
+                    </li>
+                    <li>
+                        <a
+                            href="/privacy.html"
+                            class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">Privacy
+                            Policy</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Newsletter -->
+            <div class="col-lg-4 mb-4 mb-md-0">
+                <h5 class="text-dark mb-3 fw-bolder text-uppercase">Newsletter</h5>
+                <p class="text-light-emphasis mb-3">Join our mailing list for updates on new arrivals and special offers.</p>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control bg-light text-dark" placeholder="Your email address">
+                    <button class="btn btn-dark" type="submit">Join</button>
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Footer Area with Copyright and Payment Methods -->
+        <div class="border-top border-secondary-subtle pt-3">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-2 mb-md-0">
+                    <p class="text-light-emphasis small mb-0 text-center text-md-start">&copy; 2025 Fadamasi Concept Store. All rights
+                        reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-center justify-content-md-end">
+                        <i class="fa-brands fa-cc-mastercard me-2 fa-2x"></i>
+                        <i class="fa-brands fa-cc-visa me-2 fa-2x"></i>
+                        <i class="fa-brands fa-cc-paypal me-2 fa-2x"></i>
+                        <i class="fa-brands fa-cc-apple-pay fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

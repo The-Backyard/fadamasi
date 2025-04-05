@@ -1,0 +1,228 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'Contact Us'}
+]) }}
+
+<!-- Contact Hero Section -->
+<section class="py-3">
+    <div class="container">
+        <div class="row">
+            <!-- Form Column -->
+            <div class="col-lg-7 mb-5 mb-lg-0">
+                <h1 class="fw-bolder display-5 mb-3">Get in Touch</h1>
+                <p class="lead text-muted mb-4">
+                    We'd love to hear from you. Whether you have questions about our products, need styling advice,
+                    or want to provide feedback, our team is here to help.
+                </p>
+
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <form id="contactForm" action="contact.html" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <!-- Name input -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="fullName" class="form-label">Full Name <span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-white rounded-start">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+                                        <input type="text" class="form-control rounded-end" id="fullName"
+                                            name="fullName" placeholder="Your name" required aria-required="true">
+                                    </div>
+                                    <div class="invalid-feedback">Please enter your name.</div>
+                                </div>
+
+                                <!-- Email input -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email address <span
+                                            class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-white rounded-start">
+                                            <i class="bi bi-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control rounded-end" id="email" name="email"
+                                            placeholder="Your email" required aria-required="true">
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                            </div>
+
+                            <!-- Phone input -->
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone (optional)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white rounded-start">
+                                        <i class="bi bi-telephone"></i>
+                                    </span>
+                                    <input type="tel" class="form-control rounded-end" id="phone" name="phone"
+                                        placeholder="Your phone number">
+                                </div>
+                            </div>
+
+                            <!-- Subject dropdown -->
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject <span
+                                        class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white rounded-start">
+                                        <i class="bi bi-chat-left-text"></i>
+                                    </span>
+                                    <select class="form-select rounded-end" id="subject" name="subject" required
+                                        aria-required="true">
+                                        <option value="" selected disabled>Select a subject</option>
+                                        <option value="order">Order Inquiry</option>
+                                        <option value="product">Product Information</option>
+                                        <option value="return">Returns & Exchanges</option>
+                                        <option value="shipping">Shipping Information</option>
+                                        <option value="feedback">Product Feedback</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">Please select a subject.</div>
+                            </div>
+
+                            <!-- Message textarea -->
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Message <span
+                                        class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white rounded-start">
+                                        <i class="bi bi-pencil"></i>
+                                    </span>
+                                    <textarea class="form-control rounded-end" id="message" name="message" rows="5"
+                                        placeholder="How can we help you?" required aria-required="true"></textarea>
+                                </div>
+                                <div class="invalid-feedback">Please enter your message.</div>
+                            </div>
+
+                            <!-- Submit and reset buttons - responsive layout -->
+                            <div class="row">
+                                <div class="col-12 col-sm-6 mb-3 mb-sm-0">
+                                    <button type="reset" class="btn btn-outline-secondary rounded w-100 py-2"
+                                        aria-label="Reset form">
+                                        <i class="bi bi-arrow-counterclockwise me-2"></i> Reset
+                                    </button>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <button type="submit"
+                                        class="btn btn-dark rounded text-uppercase fw-bold w-100 py-2"
+                                        aria-label="Send message">
+                                        <i class="bi bi-send me-2"></i> Send Message
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Form submission note -->
+                            <div class="form-text text-center mt-3">
+                                <i class="bi bi-info-circle me-1"></i> You will receive a confirmation email once
+                                your message is submitted. We typically respond within 24-48 hours during business
+                                days.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info Column -->
+            <div class="col-lg-5">
+                <!-- Contact Information Card -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="fw-bold text-dark mb-4">Contact Information</h3>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
+                                    style="width: 45px; height: 45px;">
+                                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fw-bold mb-1">Visit Us</h5>
+                                <p class="text-secondary mb-0">123 Fashion Avenue, Style City, ST 12345</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
+                                    style="width: 45px; height: 45px;">
+                                    <i class="fas fa-phone" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fw-bold mb-1">Call Us</h5>
+                                <p class="text-secondary mb-0"><a href="tel:+12345678910"
+                                        class="text-secondary text-decoration-none">+1 (234) 567-8910</a></p>
+                                <p class="text-secondary mb-0"><a href="tel:+12345678911"
+                                        class="text-secondary text-decoration-none">+1 (234) 567-8911</a></p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center"
+                                    style="width: 45px; height: 45px;">
+                                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h5 class="fw-bold mb-1">Email Us</h5>
+                                <p class="text-secondary mb-0"><a href="mailto:contact@fadamasi.com"
+                                        class="text-secondary text-decoration-none">contact@fadamasi.com</a></p>
+                                <p class="text-secondary mb-0"><a href="mailto:support@fadamasi.com"
+                                        class="text-secondary text-decoration-none">support@fadamasi.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Hours Card -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="fw-bold text-dark mb-4">Business Hours</h3>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span>Monday - Friday</span>
+                            <span class="fw-semibold">9:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span>Saturday</span>
+                            <span class="fw-semibold">10:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-2">
+                            <span>Sunday</span>
+                            <span class="fw-semibold">Closed</span>
+                        </div>
+                        <div class="alert alert-light mt-3 mb-0">
+                            <small><i class="fas fa-info-circle me-2"></i>All times are displayed in West African
+                                Time (WAT).</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Card -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h3 class="fw-bold text-dark mb-3">Follow Us</h3>
+                        <p class="text-secondary mb-3">Stay connected with us on social media for the latest trends,
+                            styles, and exclusive offers.</p>
+                        <div class="d-flex gap-2">
+                            {{ macros.socialButton("facebook", "lg", "#") }}
+                            {{ macros.socialButton("instagram", "lg", "#") }}
+                            {{ macros.socialButton("twitter", "lg", "#") }}
+                            {{ macros.socialButton("pinterest", "lg", "#") }}
+                            {{ macros.socialButton("whatsapp", "lg", "#") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

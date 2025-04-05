@@ -1,0 +1,183 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}My Addresses{% endblock %}
+
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'My Addresses'}
+]) }}
+
+<div class="container py-3">
+    <div class="row g-4">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            {{ macros.sidebarNav('addresses') }}
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <!-- Page Header -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold">My Addresses</h5>
+                        <button class="btn btn-sm btn-dark rounded-0" data-bs-toggle="modal"
+                            data-bs-target="#addAddressModal">
+                            <i class="bi bi-plus"></i> Add New
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <!-- Empty State (hidden with d-none) -->
+                    <div class="list-group d-none">
+                        <div class="list-group-item p-5 text-center">
+                            <div class="py-4">
+                                <div class="mb-3">
+                                    <i class="bi bi-geo-alt text-muted fs-1"></i>
+                                </div>
+                                <h5 class="fw-bold mb-2">No Saved Address</h5>
+                                <p class="text-muted mb-3">You haven't added any delivery address yet.</p>
+                                <button class="btn btn-dark rounded-0" data-bs-toggle="modal"
+                                    data-bs-target="#addAddressModal">
+                                    Add Delivery Address
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address List -->
+                    <div class="row g-3">
+                        <!-- Home Address -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-dark rounded-pill">Home</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-dark dropdown-toggle"
+                                                type="button" id="addressMenu1" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end"
+                                                aria-labelledby="addressMenu1">
+                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#addAddressModal"><i
+                                                            class="bi bi-pencil me-2"></i> Edit</a></li>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item text-danger" href="#"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteAddressModal"><i
+                                                            class="bi bi-trash me-2"></i> Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <h6 class="fw-bold mb-1">Seyi Pythonian</h6>
+                                    <p class="mb-1">123 Tech Avenue, Apt 4B</p>
+                                    <p class="mb-1">San Francisco, CA 94107</p>
+                                    <p class="mb-2">United States</p>
+                                    <p class="mb-0"><span class="fw-bold">Phone:</span> (555) 123-4567</p>
+                                    <div class="mt-2">
+                                        <span class="badge bg-success rounded-pill">Default</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Work Address -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-dark rounded-pill">Work</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-dark dropdown-toggle"
+                                                type="button" id="addressMenu2" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end"
+                                                aria-labelledby="addressMenu2">
+                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#addAddressModal"><i
+                                                            class="bi bi-pencil me-2"></i> Edit</a></li>
+                                                <li><a class="dropdown-item" href="#"><i
+                                                            class="bi bi-check-circle me-2"></i> Set as Default</a>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item text-danger" href="#"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteAddressModal"><i
+                                                            class="bi bi-trash me-2"></i> Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <h6 class="fw-bold mb-1">Seyi Pythonian</h6>
+                                    <p class="mb-1">456 Business Park, Suite 200</p>
+                                    <p class="mb-1">San Francisco, CA 94108</p>
+                                    <p class="mb-2">United States</p>
+                                    <p class="mb-0"><span class="fw-bold">Phone:</span> (555) 987-6543</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parents' Address -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="badge bg-dark rounded-pill">Parents</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-link text-dark dropdown-toggle"
+                                                type="button" id="addressMenu3" data-bs-toggle="dropdown"
+                                                aria-expanded="false">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end"
+                                                aria-labelledby="addressMenu3">
+                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#addAddressModal"><i
+                                                            class="bi bi-pencil me-2"></i> Edit</a></li>
+                                                <li><a class="dropdown-item" href="#"><i
+                                                            class="bi bi-check-circle me-2"></i> Set as Default</a>
+                                                </li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item text-danger" href="#"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteAddressModal"><i
+                                                            class="bi bi-trash me-2"></i> Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <h6 class="fw-bold mb-1">John & Mary Pythonian</h6>
+                                    <p class="mb-1">789 Family Lane</p>
+                                    <p class="mb-1">Oakland, CA 94601</p>
+                                    <p class="mb-2">United States</p>
+                                    <p class="mb-0"><span class="fw-bold">Phone:</span> (555) 246-8102</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "modals/logout_confirmation.njk" %}
+{% include "modals/create_address.njk" %}
+{% include "modals/address_delete_confirm.njk" %}
+
+{% endblock %}
