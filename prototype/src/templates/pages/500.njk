@@ -1,0 +1,35 @@
+{% extends "layouts/base.njk" %}
+{% block title %}500 - Server Error{% endblock %}
+{% block content %}
+<!-- 500 Error Hero Section -->
+<section class="d-flex align-items-center my-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="mb-4">
+                    <i class="bi bi-exclamation-triangle-fill text-danger display-1"></i>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mb-3">
+                    <i class="fas fa-tag me-2 text-muted fs-1"></i>
+                    <h1 class="mb-0 display-1 fw-bolder text-danger">500</h1>
+                    <i class="fas fa-tag ms-2 text-muted fs-1 fa-flip-horizontal"></i>
+                </div>
+                <h2 class="display-5 fw-bold mb-3">Oops! Something Went Wrong</h2>
+                <p class="lead text-muted mb-5">
+                    We're experiencing some temporary difficulties with our servers. We'd be back as quickly as
+                    possible.
+                </p>
+                <div class="d-grid gap-3 d-sm-flex justify-content-center">
+                    <button onclick="window.location.reload()"
+                        class="btn btn-dark rounded-0 text-uppercase fw-bold py-3 px-4">
+                        <i class="bi bi-arrow-clockwise me-1"></i> Try Again
+                    </button>
+                    <a href="index.html" class="btn btn-outline-dark rounded-0 text-uppercase fw-bold py-3 px-4">
+                        <i class="bi bi-house-door me-1"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
