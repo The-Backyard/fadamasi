@@ -1,6 +1,7 @@
 [build]
-  publish = "dist"
-  command = "npm run build"
+  base = "prototype"
+  publish = "prototype/dist"
+  command = "npm install && npm run build"
 
 # Redirects and headers
 [[redirects]]
@@ -17,7 +18,7 @@
 [build.processing.html]
   pretty_urls = true
 
-# Cache Control Headers 
+# Cache Control Headers
 [[headers]]
   for = "/*.html"
   [headers.values]

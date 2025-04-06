@@ -27,6 +27,7 @@ venv: ## Create a virtual environment.
 install_dev: ## Install project development dependencies.
 	$(call check_venv)
 	$(PIP) install -r requirements/development.txt
+	$(PIP) install -r requirements/testing.txt
 	$(PRE_COMMIT) install
 	@echo "Project development dependencies installed."
 
@@ -65,7 +66,7 @@ flush: ## Reset the database
 
 clean: ## Clean up the project of unneeded files
 	@echo "Cleaning up the project of unneeded files..."
-	@rm -rf .tox .mypy_cache .ruff_cache *.egg-info dist .cache htmlcov coverage.xml .coverage $(VENV_DIR)
+	@rm -rf .tox .mypy_cache .ruff_cache .pytest_cache *.egg-info dist .cache htmlcov coverage.xml .coverage $(VENV_DIR)
 	@find . -name '*.pyc' -delete
 	@find . -name 'db.sqlite3' -delete
 	@find . -type d -name '__pycache__' -exec rm -r {} \+

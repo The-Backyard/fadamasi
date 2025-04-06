@@ -7,14 +7,6 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
-from rest_framework.routers import DefaultRouter
-
-from apps.inventory import views
-
-router = DefaultRouter()
-router.register(r"brand", views.BrandViewSet)
-router.register(r"category", views.CategoryViewSet)
-router.register(r"product", views.ProductViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,8 +21,6 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
-    path("api/auth/", include("apps.account.urls")),
-    path("api/", include(router.urls)),
     path("", include("apps.core.urls")),
 ]
 
