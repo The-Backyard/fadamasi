@@ -1,21 +1,54 @@
-from django.shortcuts import get_object_or_404
-from rest_framework.decorators import api_view
+from django.db.models import Max
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, generics
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from products.models import Product
+from apps.products.models import Product
 
-from .serializers import ProductSerializer
-
-
-@api_view(["GET"])
-def product_list(request):
-    products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
+from .filters import ProductFilter
+from .serializers import ProductInfoSerializer, ProductSerializer
 
 
-@api_view(["GET"])
-def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    serializer = ProductSerializer(product)
-    return Response(serializer.data)
+class ProductListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filterset_class = ProductFilter
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
+    search_fields = ["name", "description"]
+    ordering_fields = ["name", "price"]
+
+    def get_permissions(self):
+        self.permission_classes = [AllowAny]
+        if self.request.method == "POST":
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
+
+
+class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def get_permissions(self):
+        self.permission_classes = [AllowAny]
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
+
+
+class ProductInfoAPIView(APIView):
+    def get(self, request):
+        products = Product.objects.all()
+        serializer = ProductInfoSerializer(
+            {
+                "products": products,
+                "count": len(products),
+                "max_price": products.aggregate(max_price=Max("price"))["max_price"],
+            }
+        )
+        return Response(serializer.data)

@@ -20,6 +20,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "django_filters",
+    "silk",
+    "rest_framework_simplejwt.token_blacklist",
     # Local apps
     "apps.core",
     "apps.accounts",
@@ -35,6 +37,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "silk.middleware.SilkyMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -94,10 +97,19 @@ else:
 
 STATIC_URL = "/static/"
 
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
+
 STATIC_ROOT = BASE_DIR / "assets"
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 SPECTACULAR_SETTINGS = {

@@ -1,0 +1,56 @@
+GET http://localhost:8000/products/ HTTP/1.1
+
+###
+
+POST http://localhost:8000/products/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzOTUwNDg3LCJpYXQiOjE3NDM5NTAxODcsImp0aSI6IjA0NWNmMzZlNGZlMTRhZTA4MGQwYWNhMDljMzA5ZWIwIiwidXNlcl9pZCI6MX0.BO4NzzzKmVKYWjakLJTvakp0Nd5Yz1pho2ZOXjHuQLo
+
+{
+    "name": "Television",
+    "price": 300.00,
+    "stock": 14,
+    "description": "This is amazing, ngl!"
+}
+
+###
+
+POST http://localhost:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+
+###
+
+POST http://localhost:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0NDAzNzYwOSwiaWF0IjoxNzQzOTUxMjA5LCJqdGkiOiI1MDEzNDJhZDdlMzA0YWJkODk1M2ZhZGRhZjlkYjg3YyIsInVzZXJfaWQiOjF9.MaDMe6ZW8d5vMngsANHOc0liYNySv3rNDCAF_0rIBFU"
+}
+
+###
+
+GET http://localhost:8000/products/1/ HTTP/1.1
+
+###
+
+PUT http://localhost:8000/products/1/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzOTUwNDg3LCJpYXQiOjE3NDM5NTAxODcsImp0aSI6IjA0NWNmMzZlNGZlMTRhZTA4MGQwYWNhMDljMzA5ZWIwIiwidXNlcl9pZCI6MX0.BO4NzzzKmVKYWjakLJTvakp0Nd5Yz1pho2ZOXjHuQLo
+
+{
+    "name": "Scent smell perfume",
+    "price": 300.00,
+    "stock": 7,
+    "description": "This smells nice, ngl!"
+}
+
+###
+
+DELETE http://localhost:8000/products/2/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzOTUwNDg3LCJpYXQiOjE3NDM5NTAxODcsImp0aSI6IjA0NWNmMzZlNGZlMTRhZTA4MGQwYWNhMDljMzA5ZWIwIiwidXNlcl9pZCI6MX0.BO4NzzzKmVKYWjakLJTvakp0Nd5Yz1pho2ZOXjHuQLo

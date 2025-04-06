@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from products.models import Product
+from apps.products.models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -9,7 +9,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
         model = Product
         fields = [
-            "id",
             "name",
             "description",
             "price",
@@ -23,3 +22,10 @@ class ProductSerializer(serializers.ModelSerializer):
             msg = "Price must be greater than 0."
             raise serializers.ValidationError(msg)
         return value
+
+
+class ProductInfoSerializer(serializers.Serializer):
+    # get all products, count of products, max price
+    products = ProductSerializer(many=True)
+    count = serializers.IntegerField()
+    max_price = serializers.FloatField()
