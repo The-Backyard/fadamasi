@@ -1,4 +1,4 @@
 -r base.txt
 
 pre_commit==4.2.0
-tox==4.24.2
+tox==4.25.0
