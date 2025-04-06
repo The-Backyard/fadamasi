@@ -1,6 +1,6 @@
 [build]
   base = "prototype"
-  publish = "prototype/dist"
+  publish = "dist"
   command = "npm install && npm run build"
 
 # Redirects and headers
