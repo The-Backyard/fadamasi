@@ -1,0 +1,114 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}Shopping Cart{% endblock %}
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'Shopping Cart'}
+]) }}
+
+<!-- Page Content -->
+<div class="container py-4">
+
+    <h3 class="fw-bold mb-4">Cart (3)</h3>
+    <div class="row">
+        <!-- Cart Items Column -->
+        <div class="col-lg-8 order-1">
+            <div class="card mb-4 border-0 shadow-sm">
+                <div class="card-body">
+                    <!-- Cart Items Header -->
+                    <div class="row d-none d-md-flex text-muted mb-3 pb-2 border-bottom">
+                        <div class="col-md-7">
+                            <span>Product</span>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <span>Quantity</span>
+                        </div>
+                        <div class="col-md-3 text-end">
+                            <span>Price</span>
+                        </div>
+                    </div>
+
+                    <!-- Cart Items -->
+                    <div class="row mb-4 border-bottom pb-4">
+                        {{ macros.cartItem({
+                            productUrl: "/product.html", image: "/images/native_4.png", name: "Ankara Fabric - Premium Quality", color: "#ffd700", size: "Medium", quantity: 2, totalPrice: "₦35,998", unitPrice: "₦17,999"
+                        }) }}
+                    </div>
+
+                    <div class="row">
+                        {{ macros.cartItem({
+                            productUrl: "/product.html", image: "/images/native_3.png", name: "Traditional Agbada 3-Piece Set", color: "#ddff11", size: "Large", quantity: 1, totalPrice: "₦45,999", unitPrice: "₦45,999"
+                        }) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary Column -->
+        <div class="col-lg-4 order-2">
+            <!-- Coupon Code -->
+            <div class="card mb-4 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-semibold mb-3">Apply Coupon</h5>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter promo code">
+                        <button class="btn btn-dark" type="button">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-4">Cart Summary</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Subtotal</span>
+                        <span class="fw-semibold">₦81,997</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Discount</span>
+                        <span class="fw-semibold text-success">-₦5,000</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="fw-bold">Total</span>
+                        <span class="fw-bold fs-5">₦78,497</span>
+                    </div>
+                    <a class="btn btn-dark w-100 mb-3 py-2 fw-semibold" href="/checkout.html">
+                        Proceed to Checkout <i class="bi bi-arrow-right"></i>
+                    </a>
+                    <a href="/products.html" class="btn btn-outline-dark w-100 py-2 fw-semibold">
+                        <i class="bi bi-arrow-left"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Empty State Cart -->
+    <div class="row d-none">
+        <div class="col-12 mb-4">
+            <div class="card border-0 shadow-sm text-center py-3 py-md-5">
+                <div class="card-body p-2 p-md-3">
+                    <div class="mb-4">
+                        <i class="bi bi-cart-x text-secondary display-1"></i>
+                    </div>
+                    <h3 class="fw-semibold mb-2 mb-md-3">Your Shopping Cart is Empty</h3>
+                    <p class="text-muted mb-4 mb-md-5 fs-6 fs-md-5 px-2 px-md-4 mx-auto" style="max-width: 600px;">
+                        Looks like you haven't added any items to your cart yet. Start shopping to find great
+                        Nigerian fashion products.</p>
+                    <a href="/products.html" class="btn btn-dark px-4 px-md-5 py-2 py-md-3 fs-6 fs-md-5 rounded-0">
+                        <i class="bi bi-arrow-left me-2"></i>Browse Our Products
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "modals/remove_cartitem_confirm.njk" %}
+
+{% endblock %}
