@@ -1,8 +1,8 @@
-{% macro productCard(image, category, title, rating, reviewCount, price, oldPrice, badge) %}
+{% macro productRoundedBottomCard(image, categoryName, productName, rating, reviewCount, price, oldPrice, badge) %}
 <div class="card h-100 border-0 shadow-sm">
     <a href="product.html">
         <div class="position-relative">
-            <img src="{{ image }}" class="card-img-top rounded-bottom-4" alt="Fashion Product">
+            <img height="300px" src="{{ image }}" class="card-img-top rounded-bottom-4" alt="...">
             <div class="position-absolute top-0 start-0 m-2">
                 <img src="/images/logo.png" alt="Logo" width="40" height="40" class="opacity-75">
             </div>
@@ -16,10 +16,10 @@
     <!-- Product Details -->
     <div class="card-body">
         <a href="category.html" class="text-decoration-none">
-            <span class="d-block text-muted small mb-1">{{ category }}</span>
+            <span class="d-block text-muted small mb-1">{{ categoryName }}</span>
         </a>
         <h5 class="card-title mb-1">
-            <a href="product.html" class="text-decoration-none text-dark text-truncate">{{ title }}</a>
+            <a href="product.html" class="text-decoration-none text-dark text-truncate">{{ productName }}</a>
         </h5>
         <!-- Rating -->
         <div class="mb-2">
@@ -32,7 +32,7 @@
                     <i class="bi bi-star text-warning"></i>
                 {% endif %}
             {% endfor %}
-            <span class="ms-1 small text-muted">({{ reviewCount }})</span>
+            <span class="ms-1 small text-muted">({{ reviewCount }} reviews)</span>
         </div>
         <!-- Price -->
         <div class="d-flex justify-content-between align-items-center">
@@ -46,6 +46,103 @@
                 <i class="bi bi-cart-plus me-1"></i>
                 Add
             </button>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro productRoundedTopCard(image, price, category, product, rating) %}
+<div class="card h-100 border-0 bg-light">
+    <a href="product.html">
+        <div class="position-relative">
+            <img src="{{ image }}" height="300px" class="card-img-top rounded-top-4"
+                alt="...">
+            <div class="position-absolute top-0 start-0 m-2">
+                <img src="/images/logo.png" alt="Logo" width="40" height="40" class="opacity-75">
+            </div>
+            <div
+                class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-50 text-white p-2 d-flex justify-content-between align-items-center">
+                <span class="small fw-bold">₦{{ price }}</span>
+                <button class="btn btn-sm btn-outline-light rounded-pill px-3">
+                    <i class="bi bi-cart-plus me-1"></i> Add
+                </button>
+            </div>
+        </div>
+    </a>
+    <!-- Product Details -->
+    <div class="card-body text-center">
+        <p class="card-text small mb-1"><a href="category.html"
+                class="text-muted text-decoration-none">{{ category }}</a></p>
+        <h6 class="card-title"><a href="product.html"
+                class="text-decoration-none text-dark">{{ product }}</a></h6>
+        <div class="d-flex justify-content-center gap-1">
+            {% if rating >= 0 %}
+                {% set ratingColorClass = 'warning' if rating > 0 else 'secondary' %}
+                <span class="text-{{ ratingColorClass }}">
+                    {% for i in range(0, 5) %}
+                        {% if i < (rating - (rating % 1)) %}
+                            <i class="bi bi-star-fill"></i>
+                        {% elif i == (rating - (rating % 1)) and rating % 1 != 0 %}
+                            <i class="bi bi-star-half"></i>
+                        {% else %}
+                            <i class="bi bi-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro productRoundedZeroCard(image, productName, rating, price, oldPrice, badge) %}
+<div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+    <div class="position-relative bg-light">
+        <a href="product.html">
+            <img src="{{ image }}" class="card-img-top rounded-0" height="300px" alt="...">
+            {% if badge %}
+            <div class="position-absolute top-0 end-0 m-2 d-none d-sm-block">
+                <span class="badge bg-{{ badge.color }} {{ badge.textColor }} fw-bold px-3 py-2 rounded-pill">{{ badge.text }}</span>
+            </div>
+            {% endif %}
+            <div class="position-absolute bottom-0 start-0 end-0 p-3 bg-dark bg-opacity-50 text-white">
+                <h6 class="mb-0 text-truncate">{{ productName }}</h6>
+            </div>
+            <div class="position-absolute top-0 start-0 m-2">
+                <img src="/images/logo.png" alt="Logo" width="40" height="40" class="opacity-75">
+            </div>
+        </a>
+    </div>
+    <div class="card-body p-3 d-flex flex-column justify-content-between">
+        <!-- Rating -->
+        <div class="d-flex align-items-center">
+            {% if rating >= 0 %}
+                {% set ratingColorClass = 'warning' if rating > 0 else 'secondary' %}
+                {% set ratingTextClass = 'dark' if rating > 0 else 'white' %}
+                <div class="bg-{{ ratingColorClass }} text-{{ ratingTextClass }} rounded px-2 py-1 me-2 small fw-bold">{{ rating }}</div>
+                <span class="text-{{ ratingColorClass }} small">
+                    {% for i in range(0, 5) %}
+                        {% if i < (rating - (rating % 1)) %}
+                            <i class="bi bi-star-fill"></i>
+                        {% elif i == (rating - (rating % 1)) and rating % 1 != 0 %}
+                            <i class="bi bi-star-half"></i>
+                        {% else %}
+                            <i class="bi bi-star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </span>
+            {% endif %}
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+            <div>
+                <p class="card-text text-success fw-semibold mb-1">
+                    {{ price }}
+                    {% if oldPrice %}
+                    <small class="text-decoration-line-through text-muted">{{ oldPrice }}</small>
+                    {% endif %}
+                </p>
+            </div>
+            <a href="product.html" class="btn btn-sm btn-outline-dark"><i class="bi bi-cart-plus me-1"></i> Add</a>
         </div>
     </div>
 </div>
@@ -78,7 +175,7 @@
 {% macro topCategoryCard(image, title) %}
 <a href="#" class="text-decoration-none">
     <div class="card border-0 rounded-3 text-white overflow-hidden shadow-sm"
-        style="height: 180px;">
+        style="height: 150px;">
         <img src="{{ image }}" class="card-img h-100 object-fit-cover" alt="top-category">
         <div
             class="card-img-overlay d-flex align-items-center justify-content-center bg-dark bg-opacity-25 transition-opacity">
@@ -86,45 +183,6 @@
         </div>
     </div>
 </a>
-{% endmacro %}
-
-{% macro productNoBorderCard(image, price, category, product, rating) %}
-<div class="card h-100 border-0 bg-light">
-    <a href="product.html">
-        <div class="position-relative">
-            <img src="{{ image }}" class="card-img-top rounded-top-4"
-                alt="Fashion Product">
-            <div class="position-absolute top-0 start-0 m-2">
-                <img src="/images/logo.png" alt="Logo" width="40" height="40" class="opacity-75">
-            </div>
-            <div
-                class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-50 text-white p-2 d-flex justify-content-between align-items-center">
-                <span class="small fw-bold">₦{{ price }}</span>
-                <button class="btn btn-sm btn-outline-light rounded-pill px-3">
-                    <i class="bi bi-cart-plus me-1"></i> Add
-                </button>
-            </div>
-        </div>
-    </a>
-    <!-- Product Details -->
-    <div class="card-body text-center">
-        <p class="card-text small mb-1"><a href="category.html"
-                class="text-muted text-decoration-none">{{ category }}</a></p>
-        <h6 class="card-title"><a href="product.html"
-                class="text-decoration-none text-dark">{{ product }}</a></h6>
-        <div class="d-flex justify-content-center gap-1">
-            {% for i in range(0, 5) %}
-                {% if i < (rating - (rating % 1)) %}
-                    <i class="bi bi-star-fill text-warning"></i>
-                {% elif i == (rating - (rating % 1)) and rating % 1 != 0 %}
-                    <i class="bi bi-star-half text-warning"></i>
-                {% else %}
-                    <i class="bi bi-star text-warning"></i>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-</div>
 {% endmacro %}
 
 {% macro breadcrumbs(items) %}
@@ -136,7 +194,7 @@
         {% if loop.last %}
           <li aria-current="page" class="breadcrumb-item active">{{ item.title }}</li>
         {% else %}
-          <li class="breadcrumb-item"><a href="{{ item.url }}">{{ item.title }}</a></li>
+          <li class="breadcrumb-item"><a href="{{ item.url }}" class="text-decoration-none">{{ item.title }}</a></li>
         {% endif %}
       {% endfor %}
     </ol>
@@ -145,9 +203,9 @@
 {% endmacro %}
 
 {% macro socialButton(icon, btnSize, link="#") %}
-    <a href="{{ link }}" class="btn btn-{{ btnSize }} btn-outline-dark">
-        <i class="bi bi-{{ icon }}" aria-hidden="true"></i>
-    </a>
+<a href="{{ link }}" class="btn btn-{{ btnSize }} btn-outline-dark">
+    <i class="bi bi-{{ icon }}" aria-hidden="true"></i>
+</a>
 {% endmacro %}
 
 {% macro sidebarNav(currentPage) %}
@@ -218,4 +276,64 @@
     </td>
     <td class="px-3 py-3 text-dark">{{ deliveryInfo }}</td>
 </tr>
+{% endmacro %}
+
+{% macro productThumbnail(thumbnailImage) %}
+<div class="d-flex align-items-center justify-content-center border rounded h-100 overflow-hidden">
+    <img src="{{ thumbnailImage }}" alt="..." class="img-fluid thumbnail">
+</div>
+{% endmacro %}
+
+{% macro colorOption(colorId, hexColor, isSelected=false) %}
+<div class="form-check p-0 me-2">
+    <input class="form-check-input visually-hidden" type="radio" name="color" id="{{ colorId }}"
+          {% if isSelected %}checked{% endif %}>
+    <label class="form-check-label d-flex align-items-center" for="{{ colorId }}">
+        <span class="border rounded-circle position-relative d-inline-block p-4"
+              style="background-color: {{ hexColor }}; cursor: pointer;">
+            <span class="position-absolute top-50 start-50 translate-middle text-white
+                     {% if not isSelected %}opacity-0{% endif %} fs-3">
+                <i class="bi bi-check2"></i>
+            </span>
+        </span>
+    </label>
+</div>
+{% endmacro %}
+
+{% macro reviewCard(review) %}
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex justify-content-between mb-2">
+        <h5 class="mb-0">{{ review.name }}</h5>
+        {% if review.verified %}
+        <div class="text-success small">
+          <i class="bi bi-patch-check-fill me-1"></i>
+          <span>Verified Purchase</span>
+        </div>
+        {% endif %}
+      </div>
+      <div class="text-warning mb-2">
+        {% for i in range(1, 6) %}
+          <i class="bi bi-star{% if i <= review.rating %}-fill{% endif %}"></i>
+        {% endfor %}
+      </div>
+      <h6 class="mb-2">{{ review.title }}</h6>
+      <p class="mb-2">{{ review.content }}</p>
+      <div class="mb-2 d-flex justify-content-between align-items-center text-muted small">
+        <span>{{ review.date }}</span>
+        <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center me-3">
+            <i class="bi bi-hand-thumbs-up me-1" title="Helpful"></i>
+            <span>{{ review.helpful }}</span>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="bi bi-hand-thumbs-down me-1" title="Not Helpful"></i>
+            <span>{{ review.unhelpful }}</span>
+          </div>
+        </div>
+      </div>
+      <p class="mb-0 pt-2 border-top small"><i class="me-1 text-success bi bi-hand-thumbs-up"></i> {{ review.helpful }}
+        {% if review.helpful == 1 %}person{% else %}persons{% endif %} found this review useful</p>
+    </div>
+  </div>
 {% endmacro %}

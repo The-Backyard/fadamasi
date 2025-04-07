@@ -1,0 +1,308 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}Product Detail{% endblock %}
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'Products', 'url': 'products.html'},
+    {'title': 'Product Detail'}
+]) }}
+
+<!-- Main Product Section -->
+<section class="container py-4">
+    <div class="row">
+        <!-- Product Images Section -->
+        <div class="col-lg-6 mb-4">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Main Product Image -->
+                    <div class="mb-3 position-relative">
+                        <img src="/images/native_2.png" alt="..."
+                            class="img-fluid border rounded w-100">
+                        <div class="position-absolute top-50 start-50 translate-middle">
+                            <img src="/images/logo.png" alt="Logo" width="100" height="100" class="opacity-75">
+                        </div>
+                    </div>
+                    <!-- Product Thumbnails -->
+                    <div class="row g-2 mb-3 d-flex align-items-stretch">
+                        <div class="col-3">
+                            {{ macros.productThumbnail("/images/native_2.png") }}
+                        </div>
+                        <div class="col-3">
+                            {{ macros.productThumbnail("/images/native_2.png") }}
+                        </div>
+                        <div class="col-3">
+                            {{ macros.productThumbnail("/images/native_2.png") }}
+                        </div>
+                        <div class="col-3">
+                            {{ macros.productThumbnail("/images/native_2.png") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Information Section -->
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <!-- Product badges -->
+                <div class="mb-2">
+                    <span class="badge bg-warning text-dark fw-bold px-3 py-2 rounded-pill">New
+                        Arrival</span>
+                </div>
+
+                <!-- Product Title and SKU -->
+                <h1 class="fs-3 fw-bold">Premium Ankara Midi Dress</h1>
+                <p class="text-muted small">SKU: ANK-MIDI-2025</p>
+
+                <!-- Ratings -->
+                <div class="mb-2">
+                    <div class="d-flex align-items-center">
+                        <div class="text-warning me-2">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <span>4.5</span>
+                        <span class="mx-2">|</span>
+                        <a href="product_review.html" class="text-decoration-none">20 Reviews</a>
+                    </div>
+                </div>
+
+                <!-- Pricing Information -->
+                <div class="mb-3">
+                    <span class="fs-4 fw-bold text-success">₦25,999</span>
+                    <span class="text-decoration-line-through text-muted ms-2">₦32,500</span>
+                    <span class="badge bg-danger bg-opacity-25 text-danger rounded-pill ms-2">-20%</span>
+                </div>
+
+                <!-- Stock Availability -->
+                <div class="mb-3">
+                    <span class="badge bg-success py-2 px-3"><i class="bi bi-check-circle me-1"></i> In Stock</span>
+                    <span class="text-muted ms-2">Ships within 2-3 days</span>
+                </div>
+
+                <!-- Short Description -->
+                <p class="mb-3">Elevate your style with this stunning Ankara midi dress featuring vibrant patterns
+                    inspired by traditional Nigerian designs. Perfect for owambe parties, corporate events, or
+                    church services. Handcrafted by skilled Nigerian artisans using premium quality fabric.</p>
+
+                <!-- Size Selector -->
+                <div class="mb-3">
+                    <h6 class="fw-bold">Size:</h6>
+                    <div class="d-flex flex-wrap gap-2 py-2">
+                        <input type="radio" class="btn-check" name="size" id="size-s" checked>
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-2 fw-medium"
+                            for="size-s">Small</label>
+
+                        <input type="radio" class="btn-check" name="size" id="size-m">
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-2 fw-medium"
+                            for="size-m">Medium</label>
+
+                        <input type="radio" class="btn-check" name="size" id="size-l">
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-2 fw-medium"
+                            for="size-l">Large</label>
+
+                        <input type="radio" class="btn-check" name="size" id="size-xl">
+                        <label class="btn btn-outline-secondary rounded-pill px-3 py-2 fw-medium"
+                            for="size-xl">X-Large</label>
+                    </div>
+                    <p class="small text-muted mt-1">Not sure about your size? <a href="#"
+                            class="text-decoration-none">View
+                            size guide</a></p>
+                </div>
+
+                <!-- Color Selector -->
+                <div class="mb-3">
+                    <h6 class="fw-bold">Colour:</h6>
+                    <div class="d-flex flex-wrap gap-2 py-2">
+                        {{ macros.colorOption("brown", "#8b4513", true) }}
+                        {{ macros.colorOption("orange", "#cc5500") }}
+                        {{ macros.colorOption("wine", "#800020") }}
+                        {{ macros.colorOption("green", "#008000") }}
+                    </div>
+                </div>
+
+                <!-- Quantity Selector and CTA Button -->
+                <div class="mb-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 col-5 mb-2 mb-md-0">
+                            <div class="input-group">
+                                <button class="btn btn-outline-secondary" type="button"><i
+                                        class="bi bi-dash"></i></button>
+                                <input type="text" class="form-control text-center" value="1">
+                                <button class="btn btn-outline-secondary" type="button"><i
+                                        class="bi bi-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-7">
+                            <div class="d-flex gap-2 flex-column flex-md-row">
+                                <button class="btn btn-dark flex-grow-1">
+                                    <i class="bi bi-cart-plus me-1"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="btn btn-outline-dark">
+                                    <i class="bi bi-heart me-1"></i>
+                                    Add to Wishlist
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping Information -->
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <h6 class="fw-bold"><i class="bi bi-truck me-2"></i>Delivery Information</h6>
+                        <ul class="list-unstyled mb-0">
+                            <li><i class="bi bi-check2 text-success me-2"></i>Free delivery within Lagos</li>
+                            <li><i class="bi bi-check2 text-success me-2"></i>Nationwide delivery: ₦1,500 - ₦2,500
+                            </li>
+                            <li><i class="bi bi-check2 text-success me-2"></i>Pay on Delivery available in Lagos,
+                                Abuja & Port Harcourt</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Social Sharing -->
+                <div class="d-flex align-items-center">
+                    <span class="me-2">Share:</span>
+                    <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle me-1"><i
+                            class="bi bi-facebook"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle me-1"><i
+                            class="bi bi-whatsapp"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle me-1"><i
+                            class="bi bi-instagram"></i></a>
+                    <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle"><i
+                            class="bi bi-link-45deg"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Description Section -->
+<section class="container mb-5">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="mb-3">Premium Ankara Midi Dress</h4>
+            <p>This exquisite Premium Ankara Midi Dress showcases the rich heritage of Nigerian fashion with
+                contemporary styling. Made from high-quality 100% cotton Ankara fabric sourced from local markets,
+                each dress features unique vibrant patterns that celebrate African culture and craftsmanship.</p>
+
+            <p>Meticulously handcrafted by skilled artisans in our Lagos workshop, this fitted A-line silhouette
+                flatters all body types. The elegant midi length makes it perfect for traditional ceremonies, owambe
+                parties, church events, or corporate functions where you want to make a stylish statement.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Reviews Section -->
+<section class="container mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h4 class="mb-0">Recent Reviews</h4>
+        <a href="product_review.html" class="btn btn-sm btn-outline-dark">View All <i class="bi bi-arrow-right"></i> </a>
+    </div>
+
+    <!-- Reviews -->
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            {{ macros.reviewCard({
+                name: "Treasure Gift",
+                verified: true,
+                rating: 3,
+                title: "Perfect for my cousin's wedding!",
+                content: "I wore this dress to my cousin's traditional wedding in Enugu and received so many compliments! The fabric quality is excellent, and the fit was perfect. The pockets were a pleasant surprise - very practical for keeping my phone during the ceremony. Delivery to Port Harcourt was faster than expected too!",
+                date: "March 15, 2025",
+                helpful: 24,
+                unhelpful: 3
+            }) }}
+        </div>
+        <div class="col-md-6 mb-3">
+            {{ macros.reviewCard({
+                name: "Seyi Pythonian",
+                verified: false,
+                rating: 1,
+                title: "Horrible gift for my wife",
+                content: "Got this as a surprise for my wife's birthday. She loves it! The colors are vibrant and true to the pictures. Took away one star because it arrived a day late, but the quality makes up for it. The Pay on Delivery option in Lagos was inconvenient. I regret making this purchase.",
+                date: "March 11, 2025",
+                helpful: 0,
+                unhelpful: 1
+            }) }}
+        </div>
+    </div>
+
+    <!-- No reviews empty state -->
+    <div class="card d-none">
+        <div class="card-body py-5">
+            <div class="text-center">
+                <i class="bi bi-chat-square-text fs-1 text-secondary mb-3"></i>
+                <h5>No Reviews Yet</h5>
+                <p class="text-muted mb-4">Be the first to share your experience with this product</p>
+                <a href="#" class="btn btn-dark px-4 py-2">
+                    <i class="bi bi-pencil-square me-2"></i>Write a Review
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products Section -->
+<section class="container mb-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h2 class="fw-bold text-uppercase">Related Products</h2>
+        </div>
+    </div>
+    <div class="row flex-nowrap overflow-auto pb-3 g-3 g-md-4">
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+            {{ macros.productRoundedZeroCard(
+                "images/native_3.png", "Ankara Jumpsuit - Floral Pattern", "3.5", "29,000", "33,000", {color: "warning", textColor: "text-dark", text: "New Arrival"}
+            ) }}
+        </div>
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+            {{ macros.productRoundedZeroCard(
+                "images/native_2.png", "Dashiki Embroidered Shirt", "4.0", "8,700", null, null
+            ) }}
+        </div>
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+            {{ macros.productRoundedZeroCard(
+                "images/native_4.png", "Hand-woven Aso-Oke Gele", "0.0", "4,000", "4,500", {color: "danger", textColor: "text-white", text: "-25%"}
+            ) }}
+        </div>
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+            {{ macros.productRoundedZeroCard(
+                "images/native_1.png", "Ghanaian Kente Fabric - 6 Yards Without Measures", "3.5", "9,000", null, {color: "success", textColor: "text-white", text: "Free Shipping"}
+            ) }}
+        </div>
+    </div>
+</section>
+
+<!-- Recently Viewed Products Section -->
+<section class="container mb-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h2 class="fw-bold text-uppercase">Recently Viewed</h2>
+        </div>
+    </div>
+    <div class="row flex-nowrap overflow-auto px-2">
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3 px-2">
+            {{ macros.productRoundedTopCard("images/native_1.png", "25,000", "Aso Oke", "Elegant Summar Dress", 0.0) }}
+        </div>
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3 px-2">
+            {{ macros.productRoundedTopCard("images/native_2.png", "15,999", "Accessories", "Classic Fit Blazer", 2.5) }}
+        </div>
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3 px-2">
+            {{ macros.productRoundedTopCard("images/native_3.png", "10,500", "Senator", "2025 Premium Senator Apparel", 3.5) }}
+        </div>
+        <div class="col-8 col-sm-6 col-md-4 col-lg-3 px-2">
+            {{ macros.productRoundedTopCard("images/native_4.png", "8,000", "Kids", "4
+                                    inch Turtle Neck", 4.0) }}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
