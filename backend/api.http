@@ -1,56 +1,253 @@
-GET http://localhost:8000/products/ HTTP/1.1
+@baseUrl = http://localhost:8000/api/v1/auth
+@authToken =
+@refreshToken =
 
-###
-
-POST http://localhost:8000/products/ HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzOTUwNDg3LCJpYXQiOjE3NDM5NTAxODcsImp0aSI6IjA0NWNmMzZlNGZlMTRhZTA4MGQwYWNhMDljMzA5ZWIwIiwidXNlcl9pZCI6MX0.BO4NzzzKmVKYWjakLJTvakp0Nd5Yz1pho2ZOXjHuQLo
-
-{
-    "name": "Television",
-    "price": 300.00,
-    "stock": 14,
-    "description": "This is amazing, ngl!"
-}
-
-###
-
-POST http://localhost:8000/api/token/ HTTP/1.1
+### User Registration
+# @name registerUser
+POST {{baseUrl}}/register/
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "password": "admin"
+    "username": "testuser",
+    "email": "test@example.com",
+    "password": "SecureP@ssw0rd123",
+    "password_confirm": "SecureP@ssw0rd123"
 }
 
-
-###
-
-POST http://localhost:8000/api/token/refresh/ HTTP/1.1
+### User Registration - Password Mismatch Error
+POST {{baseUrl}}/register/
 Content-Type: application/json
 
 {
-    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0NDAzNzYwOSwiaWF0IjoxNzQzOTUxMjA5LCJqdGkiOiI1MDEzNDJhZDdlMzA0YWJkODk1M2ZhZGRhZjlkYjg3YyIsInVzZXJfaWQiOjF9.MaDMe6ZW8d5vMngsANHOc0liYNySv3rNDCAF_0rIBFU"
+    "username": "testuser",
+    "email": "test@example.com",
+    "password": "SecureP@ssw0rd123",
+    "password_confirm": "DifferentPassword"
 }
 
-###
-
-GET http://localhost:8000/products/1/ HTTP/1.1
-
-###
-
-PUT http://localhost:8000/products/1/ HTTP/1.1
+### User Registration - Email Already Exists Error
+POST {{baseUrl}}/register/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzOTUwNDg3LCJpYXQiOjE3NDM5NTAxODcsImp0aSI6IjA0NWNmMzZlNGZlMTRhZTA4MGQwYWNhMDljMzA5ZWIwIiwidXNlcl9pZCI6MX0.BO4NzzzKmVKYWjakLJTvakp0Nd5Yz1pho2ZOXjHuQLo
 
 {
-    "name": "Scent smell perfume",
-    "price": 300.00,
-    "stock": 7,
-    "description": "This smells nice, ngl!"
+    "username": "testuser2",
+    "email": "test@example.com",
+    "password": "SecureP@ssw0rd123",
+    "password_confirm": "SecureP@ssw0rd123"
 }
 
-###
+### User Registration - Username Already Exists Error
+POST {{baseUrl}}/register/
+Content-Type: application/json
 
-DELETE http://localhost:8000/products/2/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzOTUwNDg3LCJpYXQiOjE3NDM5NTAxODcsImp0aSI6IjA0NWNmMzZlNGZlMTRhZTA4MGQwYWNhMDljMzA5ZWIwIiwidXNlcl9pZCI6MX0.BO4NzzzKmVKYWjakLJTvakp0Nd5Yz1pho2ZOXjHuQLo
+{
+    "username": "testuser",
+    "email": "another@example.com",
+    "password": "SecureP@ssw0rd123",
+    "password_confirm": "SecureP@ssw0rd123"
+}
+
+### User Login
+# @name loginUser
+POST {{baseUrl}}/login/
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "SecureP@ssw0rd123"
+}
+
+### Save tokens from login response
+@authToken = {{loginUser.response.body.$.access}}
+@refreshToken = {{loginUser.response.body.$.refresh}}
+
+### User Login - Invalid Credentials Error
+POST {{baseUrl}}/login/
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "WrongPassword"
+}
+
+### User Login - Inactive Account Error
+POST {{baseUrl}}/login/
+Content-Type: application/json
+
+{
+    "email": "inactive@example.com",
+    "password": "SecureP@ssw0rd123"
+}
+
+### Get JWT Tokens Directly
+# @name getTokens
+POST {{baseUrl}}/token/
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "SecureP@ssw0rd123"
+}
+
+### Save tokens from token response
+@authToken = {{getTokens.response.body.$.access}}
+@refreshToken = {{getTokens.response.body.$.refresh}}
+
+### Refresh Token
+# @name refreshAccessToken
+POST {{baseUrl}}/token/refresh/
+Content-Type: application/json
+
+{
+    "refresh": "{{refreshToken}}"
+}
+
+### Refresh Token - Invalid Refresh Token Error
+POST {{baseUrl}}/token/refresh/
+Content-Type: application/json
+
+{
+    "refresh": "invalid.refresh.token"
+}
+
+### User Logout
+POST {{baseUrl}}/logout/
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "refresh": "{{refreshToken}}"
+}
+
+### User Logout - Without Refresh Token (still valid for session auth)
+POST {{baseUrl}}/logout/
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{}
+
+### Password Reset Request
+POST {{baseUrl}}/password_reset/
+Content-Type: application/json
+
+{
+    "email": "test@example.com"
+}
+
+### Password Reset Request - Email Not Found Error
+POST {{baseUrl}}/password_reset/
+Content-Type: application/json
+
+{
+    "email": "nonexistent@example.com"
+}
+
+### Password Reset Confirm
+# Note: Replace with actual values received in reset email
+POST {{baseUrl}}/password_reset_confirm/
+Content-Type: application/json
+
+{
+    "uidb64": "example-uid",
+    "token": "example-token",
+    "new_password": "NewSecureP@ssw0rd",
+    "confirm_password": "NewSecureP@ssw0rd"
+}
+
+### Password Reset Confirm - Password Mismatch Error
+POST {{baseUrl}}/password_reset_confirm/
+Content-Type: application/json
+
+{
+    "uidb64": "example-uid",
+    "token": "example-token",
+    "new_password": "NewSecureP@ssw0rd",
+    "confirm_password": "DifferentPassword"
+}
+
+### Password Reset Confirm - Invalid Token Error
+POST {{baseUrl}}/password_reset_confirm/
+Content-Type: application/json
+
+{
+    "uidb64": "example-uid",
+    "token": "invalid-token",
+    "new_password": "NewSecureP@ssw0rd",
+    "confirm_password": "NewSecureP@ssw0rd"
+}
+
+### Get User Profile
+GET {{baseUrl}}/profile/
+Authorization: Bearer {{authToken}}
+
+### Update User Profile
+PATCH {{baseUrl}}/profile/
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "first_name": "Test",
+    "last_name": "User",
+    "phone_number": "12345678901"
+}
+
+### Admin Registration
+# @name registerAdmin
+POST {{baseUrl}}/admin/register/
+Authorization: Bearer {{authToken}}  # Must be an admin token
+Content-Type: application/json
+
+{
+    "username": "adminuser",
+    "email": "admin@example.com",
+    "password": "SecureP@ssw0rd123",
+    "password_confirm": "SecureP@ssw0rd123"
+}
+
+### Admin Registration - Unauthorized Error (when non-admin tries to create admin)
+POST {{baseUrl}}/admin/register/
+Authorization: Bearer {{authToken}}  # Using non-admin token
+Content-Type: application/json
+
+{
+    "username": "adminuser",
+    "email": "admin@example.com",
+    "password": "SecureP@ssw0rd123",
+    "password_confirm": "SecureP@ssw0rd123"
+}
+
+### List All Users (Admin only)
+GET {{baseUrl}}/admin/users/
+Authorization: Bearer {{authToken}}  # Must be an admin token
+
+### Get Specific User (Admin only)
+# Note: Replace with actual UUID
+GET {{baseUrl}}/admin/users/123e4567-e89b-12d3-a456-426614174000/
+Authorization: Bearer {{authToken}}  # Must be an admin token
+
+### Update Specific User (Admin only)
+# Note: Replace with actual UUID
+PATCH {{baseUrl}}/admin/users/123e4567-e89b-12d3-a456-426614174000/
+Authorization: Bearer {{authToken}}  # Must be an admin token
+Content-Type: application/json
+
+{
+    "first_name": "Updated",
+    "last_name": "Name",
+    "is_active": true
+}
+
+### Update Specific User - Try to Change Role (should fail)
+# Note: Replace with actual UUID
+PATCH {{baseUrl}}/admin/users/123e4567-e89b-12d3-a456-426614174000/
+Authorization: Bearer {{authToken}}  # Must be an admin token
+Content-Type: application/json
+
+{
+    "role": "admin"
+}
+
+### Delete Specific User (Admin only)
+# Note: Replace with actual UUID
+DELETE {{baseUrl}}/admin/users/123e4567-e89b-12d3-a456-426614174000/
+Authorization: Bearer {{authToken}}  # Must be an admin token

@@ -7,13 +7,10 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # Swagger Doc URL
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/schema/swagger-ui/",
@@ -25,19 +22,10 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
-    path("orders/", include("apps.orders.api.urls")),
-    path("products/", include("apps.products.api.urls")),
+    # 3rd party URL
     path("silk/", include("silk.urls", namespace="silk")),
-    path(
-        "api/token/",
-        TokenObtainPairView.as_view(),
-        name="token_obtain_pair",
-    ),
-    path(
-        "api/token/refresh/",
-        TokenRefreshView.as_view(),
-        name="token_refresh_view",
-    ),
+    # App API URL
+    path("api/", include("apps.accounts.api.urls")),
     path("", include("apps.core.api.urls")),
 ]
 
