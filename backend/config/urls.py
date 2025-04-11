@@ -26,6 +26,7 @@ urlpatterns = [
     path("silk/", include("silk.urls", namespace="silk")),
     # App API URL
     path("api/", include("apps.accounts.api.urls")),
+    path("api/", include("apps.carts.api.urls")),
     path("api/", include("apps.products.api.urls")),
     path("", include("apps.core.api.urls")),
 ]

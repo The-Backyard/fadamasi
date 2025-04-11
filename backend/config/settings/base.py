@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     # Local apps
     "apps.core",
     "apps.accounts",
+    "apps.carts",
     "apps.products",
 ]
 
@@ -41,6 +42,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "silk.middleware.SilkyMiddleware",
+    "apps.carts.middleware.CartMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -88,15 +90,15 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-if config("DJANGO_ENV") == "development":
+if config("DJANGO_ENV") == "production":
+    DATABASES = {"default": dj_database_url.config(default=config("DATABASE_URL"))}
+else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-else:
-    DATABASES = {"default": dj_database_url.config(default=config("DATABASE_URL"))}
 
 STATIC_URL = "/static/"
 
