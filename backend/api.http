@@ -251,3 +251,311 @@ Content-Type: application/json
 # Note: Replace with actual UUID
 DELETE {{baseUrl}}/admin/users/123e4567-e89b-12d3-a456-426614174000/
 Authorization: Bearer {{authToken}}  # Must be an admin token
+
+@baseUrl = http://localhost:8000/api
+@token = your_jwt_token_here
+
+# Authentication
+@name login
+POST {{baseUrl}}/auth/login/
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "your_password"
+}
+
+# Store token from the response
+@authToken = {{login.response.body.token}}
+
+# -------------------- PUBLIC ENDPOINTS --------------------
+
+###
+
+# Public - List Categories
+GET {{baseUrl}}/products/categories/
+
+###
+
+# Public - Get Category Details
+GET {{baseUrl}}/products/categories/traditional-attire/
+
+###
+
+# Public - List Products
+GET {{baseUrl}}/products/products/
+
+###
+
+# Public - List Products with Pagination
+GET {{baseUrl}}/products/products/?page=1&page_size=10
+
+###
+
+# Public - Filter Products by Category
+GET {{baseUrl}}/products/products/?category=traditional-attire
+
+###
+
+# Public - Filter Products by Price Range
+GET {{baseUrl}}/products/products/?min_price=5000&max_price=15000
+
+###
+
+# Public - Filter Products by Gender
+GET {{baseUrl}}/products/products/?gender=F
+
+###
+
+# Public - Filter Products by Color
+GET {{baseUrl}}/products/products/?color=blue
+
+###
+
+# Public - Filter Products by Size
+GET {{baseUrl}}/products/products/?size=L
+
+# Public - Filter Only Available Products
+GET {{baseUrl}}/products/products/?available=true
+
+# Public - Filter Only Featured Products
+GET {{baseUrl}}/products/products/?featured=true
+
+# Public - Filter Only Discounted Products
+GET {{baseUrl}}/products/products/?discounted=true
+
+# Public - Search Products
+GET {{baseUrl}}/products/products/?search=ankara
+
+# Public - Order Products by Price (Low to High)
+GET {{baseUrl}}/products/products/?ordering=price
+
+# Public - Order Products by Price (High to Low)
+GET {{baseUrl}}/products/products/?ordering=-price
+
+# Public - Order Products by Newest First
+GET {{baseUrl}}/products/products/?ordering=-created_at
+
+# Public - Order Products by Name
+GET {{baseUrl}}/products/products/?ordering=name
+
+# Public - Combined Filters, Search and Ordering
+GET {{baseUrl}}/products/products/?category=traditional-attire&gender=F&min_price=5000&search=ankara&ordering=-price
+
+# Public - Get Product Details
+GET {{baseUrl}}/products/products/adire-blue-gown/
+
+# -------------------- ADMIN ENDPOINTS --------------------
+
+# Admin - List Categories
+GET {{baseUrl}}/products/admin/categories/
+Authorization: Bearer {{authToken}}
+
+# Admin - Create Category
+POST {{baseUrl}}/products/admin/categories/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Contemporary Designs",
+  "description": "Modern Nigerian fashion with contemporary designs"
+}
+
+# Admin - Update Category
+PUT {{baseUrl}}/products/admin/categories/contemporary-designs/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Contemporary Designs",
+  "description": "Updated description for modern Nigerian fashion with contemporary designs"
+}
+
+# Admin - Partial Update Category
+PATCH {{baseUrl}}/products/admin/categories/contemporary-designs/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "description": "Partially updated description"
+}
+
+# Admin - Delete Category
+DELETE {{baseUrl}}/products/admin/categories/contemporary-designs/
+Authorization: Bearer {{authToken}}
+
+# Admin - List Colors
+GET {{baseUrl}}/products/admin/colors/
+Authorization: Bearer {{authToken}}
+
+# Admin - Create Color
+POST {{baseUrl}}/products/admin/colors/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Navy Blue",
+  "color_code": "#000080"
+}
+
+# Admin - Update Color
+PUT {{baseUrl}}/products/admin/colors/1/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Navy Blue",
+  "color_code": "#000088"
+}
+
+# Admin - Delete Color
+DELETE {{baseUrl}}/products/admin/colors/1/
+Authorization: Bearer {{authToken}}
+
+# Admin - List Sizes
+GET {{baseUrl}}/products/admin/sizes/
+Authorization: Bearer {{authToken}}
+
+# Admin - Create Size
+POST {{baseUrl}}/products/admin/sizes/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "XXL",
+  "description": "Extra Extra Large"
+}
+
+# Admin - Update Size
+PUT {{baseUrl}}/products/admin/sizes/1/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "XXL",
+  "description": "Updated description for XXL size"
+}
+
+# Admin - Delete Size
+DELETE {{baseUrl}}/products/admin/sizes/1/
+Authorization: Bearer {{authToken}}
+
+# Admin - List Products
+GET {{baseUrl}}/products/admin/products/
+Authorization: Bearer {{authToken}}
+
+# Admin - Create Product
+POST {{baseUrl}}/products/admin/products/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Embroidered Agbada Set",
+  "category_id": 1,
+  "description": "Luxurious embroidered three-piece Agbada set for special occasions.",
+  "gender": "M",
+  "price": "35000.00",
+  "discount_price": "30000.00",
+  "stock_quantity": 10,
+  "is_available": true,
+  "material": "Cotton and Silk",
+  "weight": "0.8",
+  "meta_keywords": "agbada, embroidered, traditional, men, formal",
+  "meta_description": "Premium embroidered three-piece Agbada set for Nigerian men",
+  "is_featured": true
+}
+
+# Admin - Get Product Details
+GET {{baseUrl}}/products/admin/products/embroidered-agbada-set/
+Authorization: Bearer {{authToken}}
+
+# Admin - Update Product
+PUT {{baseUrl}}/products/admin/products/embroidered-agbada-set/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Embroidered Agbada Set",
+  "category_id": 1,
+  "description": "Luxurious hand-embroidered three-piece Agbada set for special occasions and festivities.",
+  "gender": "M",
+  "price": "38000.00",
+  "discount_price": "32000.00",
+  "stock_quantity": 8,
+  "is_available": true,
+  "material": "Premium Cotton and Silk",
+  "weight": "0.8",
+  "meta_keywords": "agbada, embroidered, traditional, men, formal, wedding",
+  "meta_description": "Premium hand-embroidered three-piece Agbada set for Nigerian men",
+  "is_featured": true
+}
+
+# Admin - Partial Update Product
+PATCH {{baseUrl}}/products/admin/products/embroidered-agbada-set/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "price": "40000.00",
+  "discount_price": "34000.00",
+  "stock_quantity": 5
+}
+
+# Admin - Delete Product
+DELETE {{baseUrl}}/products/admin/products/embroidered-agbada-set/
+Authorization: Bearer {{authToken}}
+
+# Admin - Upload Product Image
+# Note: This requires a multipart form request with the image file
+POST {{baseUrl}}/products/admin/products/adire-blue-gown/upload-image/
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer {{authToken}}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="product_image.jpg"
+Content-Type: image/jpeg
+
+< ./path/to/your/image.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="alt_text"
+
+Front view of Adire Blue Gown
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="is_featured"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+# Admin - Delete Product Image
+DELETE {{baseUrl}}/products/admin/products/adire-blue-gown/delete-image/1/
+Authorization: Bearer {{authToken}}
+
+# Admin - Add Color Option to Product
+POST {{baseUrl}}/products/admin/products/adire-blue-gown/add-color/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "color": 3,
+  "stock_quantity": 5,
+  "is_available": true
+}
+
+# Admin - Remove Color Option from Product
+DELETE {{baseUrl}}/products/admin/products/adire-blue-gown/remove-color/3/
+Authorization: Bearer {{authToken}}
+
+# Admin - Add Size Option to Product
+POST {{baseUrl}}/products/admin/products/adire-blue-gown/add-size/
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "size": 2,
+  "stock_quantity": 8,
+  "is_available": true
+}
+
+# Admin - Remove Size Option from Product
+DELETE {{baseUrl}}/products/admin/products/adire-blue-gown/remove-size/2/
+Authorization: Bearer {{authToken}}
