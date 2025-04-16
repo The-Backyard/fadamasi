@@ -15,17 +15,17 @@
     </a>
     <!-- Product Details -->
     <div class="card-body">
-        <a href="category.html" class="text-decoration-none">
-            <span class="d-block text-muted small mb-1">{{ categoryName }}</span>
+        <a href="/category.html" class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-secondary">
+            <span class="d-block small mb-1">{{ categoryName }}</span>
         </a>
         <h6 class="card-title mb-1">
-            <a href="product.html" class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-dark text-truncate" title="{{ productName }}">{{ productName }}</a>
+            <a href="/product.html" class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-dark text-truncate" title="{{ productName }}">{{ productName }}</a>
         </h6>
         <!-- Rating -->
         <div class="mb-2">
             {% if rating >= 0 %}
                 {% set ratingColorClass = 'warning' if rating > 0 else 'secondary' %}
-                <span class="small text-{{ ratingColorClass }}">
+                <span class="small text-{{ ratingColorClass }}" title="{{ rating }}">
                     {% for i in range(0, 5) %}
                         {% if i < (rating - (rating % 1)) %}
                             <i class="bi bi-star-fill"></i>
@@ -44,7 +44,7 @@
             <div>
                 <span class="h5 fw-bold">₦{{ price }}</span>
                 {% if oldPrice %}
-                <span class="text-muted ms-1 small text-decoration-line-through">₦{{ oldPrice }}</span>
+                <span class="text-danger ms-1 small text-decoration-line-through">₦{{ oldPrice }}</span>
                 {% endif %}
             </div>
             <button class="btn btn-dark btn-sm rounded-pill px-3">
@@ -56,7 +56,7 @@
 </div>
 {% endmacro %}
 
-{% macro productRoundedTopCard(image, price, categoryName, productName, rating) %}
+{% macro productRoundedTopCard(image, price, categoryName, productName, rating, badge) %}
 <div class="card h-100 border-0 bg-light">
     <div class="position-relative">
         <img src="{{ image }}" height="300px" class="card-img-top rounded-top-4"
@@ -64,6 +64,11 @@
         <div class="position-absolute top-0 start-0 m-2">
             <img src="/images/logo.png" alt="Fadamasi Logo" width="40" height="40" class="opacity-75">
         </div>
+        {% if badge %}
+            <div class="position-absolute top-0 end-0 m-2">
+                <span class="badge bg-{{ badge.color }} {{ badge.textColor }} fw-bold px-3 py-2 rounded-pill">{{ badge.text }}</span>
+            </div>
+        {% endif %}
         <div
             class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-50 text-white p-2 d-flex justify-content-between align-items-center">
             <span class="small fw-bold">₦{{ price }}</span>
@@ -80,7 +85,7 @@
         </p>
         <h6 class="card-title">
             <a href="/product.html"
-                class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-dark text-truncate text-truncate" title="{{ productName }}">{{ productName }}</a>
+                class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-dark text-truncate" title="{{ productName }}">{{ productName }}</a>
         </h6>
         <div class="d-flex justify-content-center gap-1">
             {% if rating >= 0 %}
@@ -105,10 +110,10 @@
 {% macro productRoundedZeroCard(image, productName, rating, price, oldPrice, badge) %}
 <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
     <div class="position-relative bg-light">
-        <a href="product.html">
+        <a href="/product.html">
             <img src="{{ image }}" class="card-img-top rounded-0" height="300px" alt="...">
             {% if badge %}
-            <div class="position-absolute top-0 end-0 m-2 d-none d-sm-block">
+            <div class="position-absolute top-0 end-0 m-2">
                 <span class="badge bg-{{ badge.color }} {{ badge.textColor }} fw-bold px-3 py-2 rounded-pill">{{ badge.text }}</span>
             </div>
             {% endif %}
@@ -127,7 +132,7 @@
                 {% set ratingColorClass = 'warning' if rating > 0 else 'secondary' %}
                 {% set ratingTextClass = 'dark' if rating > 0 else 'white' %}
                 <div class="bg-{{ ratingColorClass }} text-{{ ratingTextClass }} rounded px-2 py-1 me-2 small fw-bold">{{ rating }}</div>
-                <span class="text-{{ ratingColorClass }} small">
+                <span class="text-{{ ratingColorClass }} small" title="{{ rating }}">
                     {% for i in range(0, 5) %}
                         {% if i < (rating - (rating % 1)) %}
                             <i class="bi bi-star-fill"></i>
@@ -142,10 +147,10 @@
         </div>
         <div class="d-flex justify-content-between align-items-center mt-2">
             <div>
-                <p class="card-text text-success fw-semibold mb-1">
-                    {{ price }}
+                <p class="card-text text-dark fw-semibold mb-1">
+                    ₦{{ price }}
                     {% if oldPrice %}
-                    <small class="text-decoration-line-through text-muted">{{ oldPrice }}</small>
+                    <small class="text-decoration-line-through text-danger">₦{{ oldPrice }}</small>
                     {% endif %}
                 </p>
             </div>
@@ -191,12 +196,12 @@
 <div class="container mt-3">
   <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">Home</a></li>
+      <li class="breadcrumb-item"><a href="../index.html" class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-primary">Home</a></li>
       {% for item in items %}
         {% if loop.last %}
           <li aria-current="page" class="breadcrumb-item active">{{ item.title }}</li>
         {% else %}
-          <li class="breadcrumb-item"><a href="{{ item.url }}" class="text-decoration-none">{{ item.title }}</a></li>
+          <li class="breadcrumb-item"><a href="{{ item.url }}" class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-primary">{{ item.title }}</a></li>
         {% endif %}
       {% endfor %}
     </ol>
@@ -271,7 +276,7 @@
     <td class="px-3 py-3">{{ orderDate }}</td>
     <td class="px-3 py-3">
         <div class="d-flex align-items-center">
-            {{ itemCount }} item{{ 's' if itemCount != 1 }}
+            {{ itemCount }}
         </div>
     </td>
     <td class="px-3 py-3">₦{{ orderTotal }}</td>
@@ -318,7 +323,7 @@
             </div>
             {% endif %}
         </div>
-        <div class="text-warning mb-2">
+        <div class="text-warning mb-2 small" title="{{ review.rating }}">
             {% for i in range(1, 6) %}
                 <i class="bi bi-star{% if i <= review.rating %}-fill{% endif %}"></i>
             {% endfor %}

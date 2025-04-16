@@ -68,14 +68,14 @@
                         </div>
                         <span>4.5</span>
                         <span class="mx-2">|</span>
-                        <a href="product_review.html" class="text-decoration-none">20 Reviews</a>
+                        <a href="/product_review.html" class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-primary">20 Reviews</a>
                     </div>
                 </div>
 
                 <!-- Pricing Information -->
                 <div class="mb-3">
-                    <span class="fs-4 fw-bold text-success">₦25,999</span>
-                    <span class="text-decoration-line-through text-muted ms-2">₦32,500</span>
+                    <span class="fs-4 fw-bold text-dark">₦25,999</span>
+                    <span class="text-decoration-line-through text-danger ms-2">₦32,500</span>
                     <span class="badge bg-danger bg-opacity-25 text-danger rounded-pill ms-2">-20%</span>
                 </div>
 
@@ -296,7 +296,7 @@
         </div>
         <div class="col-10 col-sm-6 col-md-4 col-lg-3 px-2">
             {{ macros.productRoundedTopCard(
-                "images/native_2.png", "15,999", "Accessories", "Classic Fit Blazer", 2.5
+                "images/native_2.png", "15,999", "Accessories", "Classic Fit Blazer", 2.5, {color: "warning", textColor: "text-dark", text: "New Arrival"}
             ) }}
         </div>
         <div class="col-10 col-sm-6 col-md-4 col-lg-3 px-2">
@@ -306,7 +306,7 @@
         </div>
         <div class="col-10 col-sm-6 col-md-4 col-lg-3 px-2">
             {{ macros.productRoundedTopCard(
-                "images/native_4.png", "8,000", "Kids", "4 inch Turtle Neck", 4.0
+                "images/native_4.png", "8,000", "Kids", "4 inch Turtle Neck", 4.0, {color: "success", textColor: "text-white", text: "Free Shipping"}
             ) }}
         </div>
     </div>

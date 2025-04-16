@@ -56,6 +56,18 @@
                         <input type="text" class="form-control" placeholder="Enter promo code">
                         <button class="btn btn-dark" type="button">Apply</button>
                     </div>
+                    <div class="d-flex align-items-center mt-3 p-2 bg-light rounded">
+                        <div class="me-auto">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-tag-fill text-success me-2"></i>
+                                <span class="fw-semibold">NEWCUSTOMER</span>
+                            </div>
+                            <small class="text-success">₦5,000 discount applied</small>
+                        </div>
+                        <button class="btn btn-sm btn-link text-danger" data-bs-toggle="modal" data-bs-target="#removeCouponModal">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -85,6 +97,50 @@
                 </div>
             </div>
 
+            <!-- Available Discount Code Component - Enhanced Floating Style -->
+            <div class="mb-4 position-relative">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="alert alert-dark m-0 border-0 rounded-0 d-flex align-items-center p-3 bg-dark">
+                            <div class="text-white d-flex align-items-center">
+                                <i class="bi bi-gift me-2"></i>
+                                <span class="fw-bold">Special Offer Available</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="d-flex mb-3">
+                                <div class="border border-2 border-dark rounded p-2 px-3 me-3 fw-bold" style="letter-spacing: 1px;">
+                                    ANKARA20
+                                </div>
+                                <div>
+                                    <h6 class="fw-semibold mb-1">₦4,000 off Ankara fabrics</h6>
+                                    <p class="text-muted mb-0 small">For purchases above ₦30,000</p>
+                                </div>
+                            </div>
+                            <div class="bg-light p-3 rounded mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="text-muted">Discount amount:</span>
+                                    <span class="fw-semibold">₦4,000</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">Your cart total after discount:</span>
+                                    <span class="fw-semibold">₦77,997</span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-danger small">
+                                    <i class="bi bi-exclamation-circle me-1"></i> Limited time offer
+                                </span>
+                                <span class="badge bg-light text-dark border">Valid for 15 more days</span>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-dark">Apply to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -110,5 +166,6 @@
 </div>
 
 {% include "modals/remove_cartitem_confirm.njk" %}
+{% include "modals/remove_coupon_confirm.njk" %}
 
 {% endblock %}
