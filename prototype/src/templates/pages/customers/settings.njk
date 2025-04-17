@@ -64,7 +64,7 @@
                                 <p class="text-muted small mb-0">Connect your Google account for faster login</p>
                             </div>
                         </div>
-                        <button class="btn btn-outline-dark btn-sm">Connect</button>
+                        <button class="btn btn-outline-dark rounded-0 btn-sm">Connect</button>
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
@@ -76,7 +76,7 @@
                                 <p class="text-muted small mb-0">Your Facebook account has been connected</p>
                             </div>
                         </div>
-                        <button class="btn btn-outline-danger btn-sm">Disconnect</button>
+                        <button class="btn btn-outline-danger rounded-0 btn-sm">Disconnect</button>
                     </div>
                 </div>
             </div>
@@ -84,14 +84,16 @@
             <div class="card border-0 shadow-sm mb-4 bg-light">
                 <div class="card-body p-4">
                     <h6 class="text-danger fw-bold mb-3">Danger Zone</h6>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <p class="mb-1 fw-medium">Delete Account</p>
-                            <p class="text-muted small mb-0">Once you delete your account, there is no going back.
-                                Please be certain.</p>
+                    <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-lg-between">
+                        <div class="mb-3 mb-lg-0">
+                            <p class="mb-1 fw-medium">Deactivate Account</p>
+                            <p class="text-muted small mb-0">Once you deactivate your account, there is no going back. Please be certain.</p>
                         </div>
-                        <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#deleteAccountModal">Delete Account</button>
+                        <div>
+                            <button class="btn btn-outline-danger rounded-0 w-100 w-lg-auto" data-bs-toggle="modal" data-bs-target="#deactivateAccountModal">
+                                Deactivate Account
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,6 +102,6 @@
 </div>
 
 {% include "modals/logout_confirmation.njk" %}
-{% include "modals/account_delete_confirm.njk" %}
+{% include "modals/account_deactivate_confirm.njk" %}
 
 {% endblock %}
