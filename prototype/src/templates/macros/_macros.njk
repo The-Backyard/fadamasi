@@ -160,6 +160,53 @@
 </div>
 {% endmacro %}
 
+{% macro productCardNoBorder(image, productName, price, oldPrice, rating, reviewCount, badge) %}
+<div class="card border bg-light border-0 h-100">
+    <div class="position-relative">
+        <a href="/product.html">
+            <img src="{{ image }}" class="card-img-top rounded-0"
+                alt="Beaded Necklace" height="300px">
+            <div class="position-absolute top-0 start-0 m-2">
+                <img src="/images/logo.png" alt="Logo" width="40" height="40" class="opacity-50">
+            </div>
+            <div class="position-absolute top-0 end-0 m-3">
+                <button class="btn btn-light btn-sm rounded-circle shadow-sm">
+                    <i class="bi bi-heart"></i>
+                </button>
+            </div>
+            <div class="position-absolute bottom-0 start-0 m-2">
+                <span class="badge bg-{{ badge.color }} text-white fw-bold px-3 py-2 rounded-2">
+                    <i class="bi bi-{{ badge.icon }} me-1"></i> {{ badge.text }}
+                </span>
+            </div>
+        </a>
+    </div>
+    <div class="card-body">
+        <h6 class="card-title text-center text-truncate fw-bold mb-3">
+            <a href="/product.html" class="link-offset-2 link-offset-2-hover link-underline-opacity-0 link-underline-opacity-75-hover link-dark">{{ productName }}</a>
+        </h6>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+                <span class="text-dark fw-bold h6">₦{{ price }}</span>
+                {% if oldPrice %}
+                <span class="text-danger ms-1 small text-decoration-line-through">₦{{ oldPrice }}</span>
+                {% endif %}
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <span class="me-1">{{ rating }}</span>
+                <span class="text-muted">({{ reviewCount }})</span>
+            </div>
+        </div>
+        <div class="d-grid gap-2">
+            <button class="btn btn-sm btn-dark rounded-0 py-2">
+                <i class="bi bi-cart-plus me-1"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
 {% macro categoryCard(image, categoryName, productCount) %}
 <div class="card border-0 text-white overflow-hidden h-100">
     <div class="position-relative h-100">

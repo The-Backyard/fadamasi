@@ -97,8 +97,8 @@
                 </div>
             </div>
 
-            <!-- Available Discount Code Component - Enhanced Floating Style -->
-            <div class="mb-4 position-relative">
+            <!-- Available Discount Code Component -->
+            <div class="mb-5 position-relative">
                 <div class="card border-0 shadow-sm">
                     <div class="card-body p-0">
                         <div class="alert alert-dark m-0 border-0 rounded-0 d-flex align-items-center p-3 bg-dark">
@@ -143,6 +143,41 @@
 
         </div>
     </div>
+
+    <section class="mb-5">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold text-uppercase">Recommended Products</h2>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Product Cards -->
+            <div class="position-relative">
+                <div class="row flex-nowrap overflow-auto px-2">
+                    <div class="col-10 col-sm-6 col-lg-3 px-2">
+                        {{ macros.productCardNoBorder(
+                            "/images/native_2.png", "Adire Elegance Wrap Dress", "22,500", "29,000", "3.0", "49", null
+                        )}}
+                    </div>
+                    <div class="col-10 col-sm-6 col-lg-3 px-2">
+                        {{ macros.productCardNoBorder(
+                            "/images/native_1.png", "Ankara Peplum Maxi Gown", "18,700", "25,000", "4.5", "37", {color: "danger", icon: "clock", text: "Ends in 2d:06h"}
+                        )}}
+                    </div>
+                    <div class="col-10 col-sm-6 col-lg-3 px-2">
+                        {{ macros.productCardNoBorder(
+                            "/images/native_3.png", "Aso-Oke Embroidered Shift Dress", "15,900", null, "3.0", "28", {color: "success", icon: "truck", text: "Free Shipping"}
+                        )}}
+                    </div>
+                    <div class="col-10 col-sm-6 col-lg-3 px-2">
+                        {{ macros.productCardNoBorder(
+                            "/images/native_4.png", "Lace Embellished Traditional Gown", "32,500", null, "5.0", "43", {color: "secondary", text: "Limited Edition"}
+                        )}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Empty State Cart -->
     <div class="row d-none">
