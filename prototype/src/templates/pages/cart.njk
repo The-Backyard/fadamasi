@@ -33,21 +33,40 @@
                     <!-- Cart Items -->
                     <div class="row mb-4 border-bottom pb-4">
                         {{ macros.cartItem({
-                            productUrl: "/product.html", image: "/images/native_4.png", name: "Ankara Fabric - Premium Quality", color: "#ffd700", size: "Medium", quantity: 2, totalPrice: "₦35,998", unitPrice: "₦17,999"
+                            image: "/images/native_4.png", name: "Ankara Fabric - Premium Quality", color: "#ffd700", size: "Medium", quantity: 2, totalPrice: "₦35,998", unitPrice: "₦17,999"
+                        }) }}
+                    </div>
+
+                    <div class="row mb-4 border-bottom pb-4">
+                        {{ macros.cartItem({
+                            image: "/images/native_4.png", name: "Handwoven Aso Oke Gele", color: "#8a2be2", size: "One Size", quantity: 1, totalPrice: "₦12,500", unitPrice: "₦12,500"
+                        }) }}
+                    </div>
+
+                    <div class="row mb-4 border-bottom pb-4">
+                        {{ macros.cartItem({
+                            image: "/images/native_2.png", name: "Adire Elegance Wrap Dress", color: "#4169e1", size: "Small", quantity: 3, totalPrice: "₦67,500", unitPrice: "₦22,500"
+                        }) }}
+                    </div>
+
+                    <div class="row mb-4 border-bottom pb-4">
+                        {{ macros.cartItem({
+                            image: "/images/native_1.png", name: "Elegant Summer Dress - Limited Edition", color: "#ff4500", size: "Medium", quantity: 1, totalPrice: "₦25,000", unitPrice: "₦25,000"
                         }) }}
                     </div>
 
                     <div class="row">
                         {{ macros.cartItem({
-                            productUrl: "/product.html", image: "/images/native_3.png", name: "Traditional Agbada 3-Piece Set", color: "#ddff11", size: "Large", quantity: 1, totalPrice: "₦45,999", unitPrice: "₦45,999"
+                            image: "/images/native_3.png", name: "Traditional Agbada 3-Piece Set", color: "#ddff11", size: "Large", quantity: 1, totalPrice: "₦45,999", unitPrice: "₦45,999"
                         }) }}
                     </div>
+
                 </div>
             </div>
         </div>
 
         <!-- Order Summary Column -->
-        <div class="col-lg-4 order-2">
+        <div class="col-lg-4 order-2 mb-3">
             <!-- Coupon Code -->
             <div class="card mb-4 border-0 shadow-sm">
                 <div class="card-body">
