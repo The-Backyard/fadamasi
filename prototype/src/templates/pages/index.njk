@@ -70,7 +70,7 @@
         <div class="row g-4">
             <div class="col-md-6 col-lg-3">
                 {{ macros.productRoundedBottomCard(
-                    "images/native_1.png", "Women", "Elegant Summer Dress", "4.5", 24, "15,800", null, {color: "warning", textColor: "text-dark", text: "New Arrival"}
+                    "images/native_1.png", "Women", "Elegant Summer Dress", "4.5", 1, "15,800", null, {color: "warning", textColor: "text-dark", text: "New Arrival"}
                 ) }}
             </div>
             <div class="col-md-6 col-lg-3">
@@ -80,12 +80,12 @@
             </div>
             <div class="col-md-6 col-lg-3">
                 {{ macros.productRoundedBottomCard(
-                    "images/native_4.png", "Accessories", "Leather Crossbody Bag", "5.0", 42, "12,000", null, null
+                    "images/native_4.png", "Accessories", "Leather Crossbody Bag", "5.0", 4, "12,000", null, null
                 ) }}
             </div>
             <div class="col-md-6 col-lg-3">
                 {{ macros.productRoundedBottomCard(
-                    "images/native_2.png", "Footwear", "Premium Sneakers", "4.5", 38, "44,000", null, {color: "success", textColor: "text-white", text: "Free Shipping"}
+                    "images/native_2.png", "Footwear", "Premium Sneakers", "2.0", 2, "44,000", null, {color: "success", textColor: "text-white", text: "Free Shipping"}
                 ) }}
             </div>
         </div>
@@ -121,6 +121,78 @@
             <!-- Category Card 3 -->
             <div class="col-md-4">
                 {{ macros.categoryCard("images/native_2.png", "For Kids", 10) }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Limited Time Offers< Section -->
+<div class="bg-dark text-white py-2">
+    <div class="container">
+        <div class="text-center">
+            <i class="bi bi-lightning"></i>
+            <span class="mb-0 text-uppercase mx-1">Limited Time Offers</span>
+            <i class="bi bi-lightning"></i>
+        </div>
+    </div>
+</div>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <!-- Product Cards -->
+        <div class="position-relative">
+            <div class="row flex-nowrap overflow-auto px-2">
+                <div class="col-10 col-sm-6 col-lg-3 px-2">
+                    {{ macros.productCardNoBorder(
+                        "/images/native_1.png",
+                        "Ankara Peplum Maxi Gown",
+                        "18,700",
+                        "25,000",
+                        "4.5",
+                        "37",
+                        {color: "danger", icon: "heart-fill"},
+                        {color: "danger", icon: "clock", text: "Ends in 2d:06h"}
+                    )}}
+                </div>
+
+                <div class="col-10 col-sm-6 col-lg-3 px-2">
+                    {{ macros.productCardNoBorder(
+                        "/images/native_2.png",
+                        "Premium Leather Oxford Shoes",
+                        "32,500",
+                        "45,000",
+                        "4.8",
+                        "52",
+                        {color: "light", icon: "heart"},
+                        {color: "danger", icon: "tags", text: "28% OFF"}
+                    )}}
+                </div>
+
+                <div class="col-10 col-sm-6 col-lg-3 px-2">
+                    {{ macros.productCardNoBorder(
+                        "/images/native_3.png",
+                        "Designer Senator Suit Set",
+                        "27,999",
+                        "39,999",
+                        "4.6",
+                        "43",
+                        {color: "light", icon: "heart"},
+                        {color: "danger", icon: "lightning", text: "Last 5 Items"}
+                    )}}
+                </div>
+
+                <div class="col-10 col-sm-6 col-lg-3 px-2">
+                    {{ macros.productCardNoBorder(
+                        "/images/native_4.png",
+                        "Handcrafted Beaded Necklace",
+                        "8,500",
+                        "12,000",
+                        "4.7",
+                        "29",
+                        {color: "danger", icon: "heart-fill"},
+                        {color: "danger", icon: "fire", text: "Hot Deal"}
+                    )}}
+                </div>
             </div>
         </div>
     </div>
@@ -171,11 +243,13 @@
     </div>
 </section>
 
-<!-- Limited Stock Section -->
+<!-- Handpicked For You Section -->
 <div class="bg-dark text-white py-2">
     <div class="container">
         <div class="text-center">
-            <p class="mb-0 text-uppercase">Limited Stock Deals</p>
+            <i class="bi bi-gem"></i>
+            <span class="mb-0 text-uppercase mx-1">Handpicked For You</span>
+            <i class="bi bi-gem"></i>
         </div>
     </div>
 </div>
@@ -209,4 +283,40 @@
         </div>
     </div>
 </section>
+
+<!-- Trending Now Section -->
+<section class="py-5">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-6 fw-bold text-uppercase">Trending Now</h2>
+                <p class="text-muted">Discover what everyone's loving this season</p>
+            </div>
+        </div>
+        <div class="row flex-nowrap overflow-auto pb-3 g-3 g-md-4">
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+                {{ macros.productRoundedZeroCard(
+                    "images/native_3.png", "Ankara Jumpsuit - Floral Pattern", "4.5", "29,000", "33,000", {color: "warning", textColor: "text-dark", text: "New Arrival"}
+                ) }}
+            </div>
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+                {{ macros.productRoundedZeroCard(
+                    "images/native_2.png", "Dashiki Embroidered Shirt", "4.0", "8,700", null, null
+                ) }}
+            </div>
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+                {{ macros.productRoundedZeroCard(
+                    "images/native_4.png", "Hand-woven Aso-Oke Gele", "5.0", "4,000", "4,500", {color: "danger", textColor: "text-white", text: "-25%"}
+                ) }}
+            </div>
+            <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+                {{ macros.productRoundedZeroCard(
+                    "images/native_1.png", "Ghanaian Kente Fabric - 6 Yards Without Measures", "3.5", "9,000", null, {color: "success", textColor: "text-white", text: "Free Shipping"}
+                ) }}
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}
