@@ -39,17 +39,9 @@
             <!-- Orders Filter -->
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body p-3">
-                    <div class="row g-2 align-items-center">
-                        <div class="col-md-4">
-                            <select class="form-select">
-                                <option selected>All Orders</option>
-                                <option>Last 30 Days</option>
-                                <option>Last 3 Months</option>
-                                <option>Last 6 Months</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="form-select">
+                    <div class="d-flex flex-column flex-lg-row justify-content-lg-between align-items-start align-items-lg-center gap-3">
+                        <div class="d-flex flex-column flex-md-row gap-2 gap-md-3">
+                            <select class="form-select rounded-0">
                                 <option selected>All Statuses</option>
                                 <option>Pending</option>
                                 <option>Processing</option>
@@ -57,14 +49,15 @@
                                 <option>Delivered</option>
                                 <option>Cancelled</option>
                             </select>
-                        </div>
-                        <div class="col-md-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search orders...">
-                                <button class="btn btn-outline-secondary" type="button">
+                                <input type="text" class="form-control rounded-0" placeholder="Search orders...">
+                                <span class="input-group-text bg-light rounded-0">
                                     <i class="bi bi-search"></i>
-                                </button>
+                                </span>
                             </div>
+                        </div>
+                        <div class="d-grid d-lg-block">
+                            <button class="btn btn-dark rounded-0 px-4">Filter Orders</button>
                         </div>
                     </div>
                 </div>

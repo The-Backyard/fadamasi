@@ -1,0 +1,150 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}Track Order{% endblock %}
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'Track Order'}
+]) }}
+
+<!-- Main Content -->
+<div class="container py-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-5">
+                        <i class="bi bi-box-seam text-dark fs-1 mb-3" aria-hidden="true"></i>
+                        <h5>Track Your Order</h5>
+                        <p class="text-muted">
+                            Enter your order number and email to track your package status and estimated delivery date.
+                        </p>
+                    </div>
+
+                    <!-- Order Tracking Form -->
+                    <form action="/track_result.html" method="get">
+                        <!-- Order Number Field -->
+                        <div class="mb-4">
+                            <label for="orderNumber" class="form-label">Order Number <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="bi bi-receipt" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" id="orderNumber" name="orderNumber"
+                                    placeholder="Example: 12345" required>
+                            </div>
+                            <div class="form-text">
+                                Your order number was sent to your email after purchase.
+                            </div>
+                        </div>
+
+                        <!-- Email Address Field -->
+                        <div class="mb-4">
+                            <label for="emailAddress" class="form-label">Email Address <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="bi bi-envelope" aria-hidden="true"></i></span>
+                                <input type="email" class="form-control" id="emailAddress" name="emailAddress"
+                                    placeholder="example@email.com" required>
+                            </div>
+                            <div class="form-text">
+                                Enter the email address used for your order.
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-dark rounded-0 btn-lg">Track Order</button>
+                        </div>
+                    </form>
+
+                    <!-- Help Accordion -->
+                    <div class="mt-5">
+                        <div class="accordion" id="trackingHelp">
+                            <!-- Can't Find Order Number Help -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        Can't find your order number?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                    data-bs-parent="#trackingHelp">
+                                    <div class="accordion-body">
+                                        <p>Your order number can be found in:</p>
+                                        <ul>
+                                            <li>Your order confirmation email</li>
+                                            <li>Your account dashboard (if you're registered)</li>
+                                            <li>The order receipt from your purchase</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order Status Information -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Understanding order status
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#trackingHelp">
+                                    <div class="accordion-body">
+                                        <p>Your order will go through these stages:</p>
+                                        <ul>
+                                            <li><strong>Processing:</strong> We've received your order and are preparing it</li>
+                                            <li><strong>Packed:</strong> Your items have been packaged and are awaiting carrier pickup</li>
+                                            <li><strong>Shipped:</strong> Your order is on its way with the carrier</li>
+                                            <li><strong>Out for Delivery:</strong> Your package is scheduled for delivery today</li>
+                                            <li><strong>Delivered:</strong> Your order has been delivered</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Other Helpful Links -->
+                    <div class="mt-5">
+                        <h5 class="text-center mb-4">Other Helpful Resources</h5>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <a href="faq.html" class="text-decoration-none">
+                                    <div class="card h-100 border-0 shadow-sm text-center p-3">
+                                        <i class="bi bi-question-circle text-dark mb-2"></i>
+                                        <div class="card-body p-0">
+                                            <h6 class="card-title">FAQs</h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="returns.html" class="text-decoration-none">
+                                    <div class="card h-100 border-0 shadow-sm text-center p-3">
+                                        <i class="bi bi-arrow-return-left text-dark mb-2"></i>
+                                        <div class="card-body p-0">
+                                            <h6 class="card-title">Returns</h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="contact.html" class="text-decoration-none">
+                                    <div class="card h-100 border-0 shadow-sm text-center p-3">
+                                        <i class="bi bi-headset text-dark mb-2"></i>
+                                        <div class="card-body p-0">
+                                            <h6 class="card-title">Support</h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
