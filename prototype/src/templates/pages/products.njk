@@ -1,0 +1,12 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}Products{% endblock %}
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'Products'}
+]) }}
+
+
+{% endblock %}

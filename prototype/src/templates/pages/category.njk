@@ -1,0 +1,487 @@
+{% extends "layouts/base.njk" %}
+{% import "macros/_macros.njk" as macros %}
+
+{% block title %}Fashion Collection | Categories{% endblock %}
+{% block content %}
+
+{{ macros.breadcrumbs([
+    {'title': 'Categories', 'url': 'categories.html'},
+    {'title': 'Fashion Collection'}
+]) }}
+
+<!-- Category Header -->
+<div class="container mb-4">
+    <h1 class="h2">Fashion Collection</h1>
+    <p class="text-muted">
+        Discover our curated selection of trendy Nigerian fashion pieces. From traditional ankara prints to contemporary
+        designs, explore our collection of high-quality clothing and accessories at affordable prices.
+    </p>
+</div>
+
+<!-- Product Listing Section -->
+<div class="container mb-5">
+    <div class="row">
+        <!-- Filter Toggle Button for Mobile -->
+        <div class="col-12 d-lg-none mb-3">
+            <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas">
+                <i class="bi bi-funnel me-2"></i>Filter Products
+            </button>
+        </div>
+
+        <!-- Sidebar Filters - Desktop View -->
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="card border-0 rounded-3 shadow-sm mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold">Filters</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Product Type -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Product Type</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="ankara-dresses">
+                            <label class="form-check-label" for="ankara-dresses">
+                                Ankara Dresses
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">42</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="aso-ebi">
+                            <label class="form-check-label" for="aso-ebi">
+                                Aso Ebi Styles
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">38</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="gele-headwraps">
+                            <label class="form-check-label" for="gele-headwraps">
+                                Gele & Headwraps
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">27</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="kaftans">
+                            <label class="form-check-label" for="kaftans">
+                                Kaftans
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">31</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="agbada-sets">
+                            <label class="form-check-label" for="agbada-sets">
+                                Agbada Sets
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">19</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="accessories">
+                            <label class="form-check-label" for="accessories">
+                                Accessories
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">56</span>
+                        </div>
+                        <div class="mt-2">
+                            <a href="#" class="text-decoration-none small">Show more <i class="bi bi-chevron-down"></i></a>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Occasions -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Occasion</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="traditional-ceremonies">
+                            <label class="form-check-label" for="traditional-ceremonies">
+                                Traditional Ceremonies
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="weddings">
+                            <label class="form-check-label" for="weddings">
+                                Weddings
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="casual">
+                            <label class="form-check-label" for="casual">
+                                Casual Wear
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="office">
+                            <label class="form-check-label" for="office">
+                                Office Wear
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="parties">
+                            <label class="form-check-label" for="parties">
+                                Parties & Events
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Size -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Size</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <input type="checkbox" class="btn-check" name="size" id="xs" autocomplete="off">
+                            <label class="btn btn-outline-secondary btn-sm" for="xs">XS</label>
+
+                            <input type="checkbox" class="btn-check" name="size" id="s" autocomplete="off">
+                            <label class="btn btn-outline-secondary btn-sm" for="s">S</label>
+
+                            <input type="checkbox" class="btn-check" name="size" id="m" autocomplete="off">
+                            <label class="btn btn-outline-secondary btn-sm" for="m">M</label>
+
+                            <input type="checkbox" class="btn-check" name="size" id="l" autocomplete="off">
+                            <label class="btn btn-outline-secondary btn-sm" for="l">L</label>
+
+                            <input type="checkbox" class="btn-check" name="size" id="xl" autocomplete="off">
+                            <label class="btn btn-outline-secondary btn-sm" for="xl">XL</label>
+
+                            <input type="checkbox" class="btn-check" name="size" id="xxl" autocomplete="off">
+                            <label class="btn btn-outline-secondary btn-sm" for="xxl">XXL</label>
+
+                            <input type="checkbox" class="btn-check" name="size" id="plus" autocomplete="off">
+                            <label class="btn btn-outline-secondary btn-sm" for="plus">Plus Size</label>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Fabric Type -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Fabric Type</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="ankara">
+                            <label class="form-check-label" for="ankara">
+                                Ankara
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="lace">
+                            <label class="form-check-label" for="lace">
+                                Lace
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="adire">
+                            <label class="form-check-label" for="adire">
+                                Adire
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="aso-oke">
+                            <label class="form-check-label" for="aso-oke">
+                                Aso-Oke
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="cotton">
+                            <label class="form-check-label" for="cotton">
+                                Cotton
+                            </label>
+                        </div>
+                        <div class="mt-2">
+                            <a href="#" class="text-decoration-none small">Show more <i class="bi bi-chevron-down"></i></a>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Colors with Nigerian flag colors featured -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Color</h6>
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                            <button class="btn p-0 border border-secondary rounded-circle position-relative" style="width: 32px; height: 32px; background-color: #008751;" data-bs-toggle="tooltip" title="Green">
+                                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-light text-dark d-none">Green</span>
+                            </button>
+                            <button class="btn p-0 border border-secondary rounded-circle position-relative" style="width: 32px; height: 32px; background-color: #FFFFFF;" data-bs-toggle="tooltip" title="White">
+                                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-light text-dark d-none">White</span>
+                            </button>
+                            <button class="btn p-0 border border-secondary rounded-circle position-relative" style="width: 32px; height: 32px; background-color: #000000;" data-bs-toggle="tooltip" title="Black">
+                                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-light text-dark d-none">Black</span>
+                            </button>
+                            <button class="btn p-0 border border-secondary rounded-circle position-relative" style="width: 32px; height: 32px; background-color: #FF0000;" data-bs-toggle="tooltip" title="Red">
+                                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-light text-dark d-none">Red</span>
+                            </button>
+                            <button class="btn p-0 border border-secondary rounded-circle position-relative" style="width: 32px; height: 32px; background-color: #0000FF;" data-bs-toggle="tooltip" title="Blue">
+                                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-light text-dark d-none">Blue</span>
+                            </button>
+                            <button class="btn p-0 border border-secondary rounded-circle position-relative" style="width: 32px; height: 32px; background-color: #FFD700;" data-bs-toggle="tooltip" title="Gold">
+                                <span class="position-absolute top-100 start-50 translate-middle badge rounded-pill bg-light text-dark d-none">Gold</span>
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <a href="#" class="text-decoration-none small" data-bs-toggle="collapse" data-bs-target="#moreColors">More colors <i class="bi bi-chevron-down"></i></a>
+                            <div class="collapse mt-2" id="moreColors">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button class="btn p-0 border border-secondary rounded-circle" style="width: 32px; height: 32px; background-color: #800080;" data-bs-toggle="tooltip" title="Purple"></button>
+                                    <button class="btn p-0 border border-secondary rounded-circle" style="width: 32px; height: 32px; background-color: #FFA500;" data-bs-toggle="tooltip" title="Orange"></button>
+                                    <button class="btn p-0 border border-secondary rounded-circle" style="width: 32px; height: 32px; background-color: #A52A2A;" data-bs-toggle="tooltip" title="Brown"></button>
+                                    <button class="btn p-0 border border-secondary rounded-circle" style="width: 32px; height: 32px; background-color: #FFC0CB;" data-bs-toggle="tooltip" title="Pink"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Price Range -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Price Range (₦)</h6>
+                        <div class="range">
+                            <input type="range" class="form-range" min="0" max="100000" value="30000" id="priceRange">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <small>₦0</small>
+                            <small>₦100,000</small>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="input-group input-group-sm me-2">
+                                <span class="input-group-text">₦</span>
+                                <input type="number" class="form-control" placeholder="Min" value="0">
+                            </div>
+                            <div class="px-2">-</div>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">₦</span>
+                                <input type="number" class="form-control" placeholder="Max" value="30000">
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <span class="badge bg-primary">₦0 - ₦30,000</span>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Designer/Brand -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Designer/Brand</h6>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control form-control-sm" placeholder="Search brands">
+                            <button class="btn btn-outline-secondary btn-sm" type="button">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="tiffany-amber">
+                            <label class="form-check-label" for="tiffany-amber">
+                                Tiffany Amber
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="deola-sagoe">
+                            <label class="form-check-label" for="deola-sagoe">
+                                Deola Sagoe
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="maki-oh">
+                            <label class="form-check-label" for="maki-oh">
+                                Maki Oh
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="lisa-folawiyo">
+                            <label class="form-check-label" for="lisa-folawiyo">
+                                Lisa Folawiyo
+                            </label>
+                        </div>
+                        <div class="mt-2">
+                            <a href="#" class="text-decoration-none small">Show more <i class="bi bi-chevron-down"></i></a>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Customer Rating -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Customer Rating</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="rating" id="rating-any">
+                            <label class="form-check-label" for="rating-any">
+                                Any rating
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="rating" id="rating-4plus" checked>
+                            <label class="form-check-label d-flex align-items-center" for="rating-4plus">
+                                <div class="me-2">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star text-warning"></i>
+                                </div>
+                                <span>& Up</span>
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="rating" id="rating-3plus">
+                            <label class="form-check-label d-flex align-items-center" for="rating-3plus">
+                                <div class="me-2">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star text-warning"></i>
+                                    <i class="bi bi-star text-warning"></i>
+                                </div>
+                                <span>& Up</span>
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="rating" id="rating-2plus">
+                            <label class="form-check-label d-flex align-items-center" for="rating-2plus">
+                                <div class="me-2">
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star-fill text-warning"></i>
+                                    <i class="bi bi-star text-warning"></i>
+                                    <i class="bi bi-star text-warning"></i>
+                                    <i class="bi bi-star text-warning"></i>
+                                </div>
+                                <span>& Up</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Discount -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Discount</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="discount-10">
+                            <label class="form-check-label" for="discount-10">
+                                10% or more
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="discount-25">
+                            <label class="form-check-label" for="discount-25">
+                                25% or more
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="discount-50">
+                            <label class="form-check-label" for="discount-50">
+                                50% or more
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Shipping Options -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold mb-3">Shipping Options</h6>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="ready-to-ship">
+                            <label class="form-check-label" for="ready-to-ship">
+                                Ready to Ship
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="free-shipping">
+                            <label class="form-check-label" for="free-shipping">
+                                Free Shipping
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="fast-delivery">
+                            <label class="form-check-label" for="fast-delivery">
+                                Fast Delivery (1-3 days)
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Filter Action Buttons -->
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary">Apply Filters</button>
+                        <button class="btn btn-outline-secondary">Clear All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Grid would go here -->
+        <div class="col-lg-9">
+            <!-- Products will be displayed here -->
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Offcanvas Filter -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="filterOffcanvas">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-bold">Filter Products</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Mobile filters - similar structure as desktop but optimized for mobile -->
+        <!-- Product Type -->
+        <div class="accordion" id="filterAccordionMobile">
+            <div class="accordion-item border-0">
+                <h2 class="accordion-header" id="headingProductType">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseProductType" aria-expanded="true" aria-controls="collapseProductType">
+                        Product Type
+                    </button>
+                </h2>
+                <div id="collapseProductType" class="accordion-collapse collapse show" aria-labelledby="headingProductType">
+                    <div class="accordion-body">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="ankara-dresses-mobile">
+                            <label class="form-check-label" for="ankara-dresses-mobile">
+                                Ankara Dresses
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">42</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="aso-ebi-mobile">
+                            <label class="form-check-label" for="aso-ebi-mobile">
+                                Aso Ebi Styles
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">38</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="gele-headwraps-mobile">
+                            <label class="form-check-label" for="gele-headwraps-mobile">
+                                Gele & Headwraps
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">27</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="kaftans-mobile">
+                            <label class="form-check-label" for="kaftans-mobile">
+                                Kaftans
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">31</span>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" id="agbada-sets-mobile">
+                            <label class="form-check-label" for="agbada-sets-mobile">
+                                Agbada Sets
+                            </label>
+                            <span class="badge bg-light text-dark ms-1">19</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion items for other filter categories would go here -->
+        </div>
+
+        <!-- Apply/Clear Filters Buttons (Mobile) -->
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" data-bs-dismiss="offcanvas">Apply Filters</button>
+            <button class="btn btn-outline-secondary">Clear All</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
